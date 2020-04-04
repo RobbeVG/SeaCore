@@ -21,7 +21,7 @@ namespace sea_core
 	public:
 		GameObject* GetParent() const;
 		
-		virtual void Update(const float deltaSeconds) = 0;
+		virtual void UpdateComponent(const float deltaSeconds) = 0;
 		virtual void ReceiveMessage(const unsigned int) {}
 		
 		virtual ~BaseComponent() = default;
@@ -33,19 +33,20 @@ namespace sea_core
 		BaseComponent& operator=(BaseComponent&& other) noexcept = delete;
 
 		void BroadcastMessage(const unsigned int message) const;
+		void AssignBroadcaster(const std::string& broadcasterName);
+
 		
 	//Add component gameObject
-		friend class GameObject;
-		
-		
+		friend class GameObject;		
 		GameObject* m_pParent;
+
+	private:
+		virtual inline void AttachToContainer(std::vector<BaseComponent*>& components, std::vector<RendererComponent*>&) { components.push_back(this); } //Force inline?
+
 		/*
 		 * @Brief Broadcaster of the component
 		 * @Remark: To initialize use -> m_pBroadcaster = GetBroadcaster("NameOfBroadCast")
 		 */
 		Broadcaster const* m_pBroadcaster;
-		
-	private:
-		virtual inline void AttachToContainer(std::vector<BaseComponent*>& components, std::vector<const RenderComponent*>&) { components.push_back(this); } //Force inline?
 	};
 }

@@ -13,7 +13,7 @@ namespace sea_core
 	public:
 		Transform();
 		~Transform() override;
-		void Update(const float) override;
+		void UpdateComponent(const float) override;
 		
 		const glm::vec3& GetPosition() const { return m_Position; }
 		void SetPosition(float x, float y, float z);

@@ -1,18 +1,14 @@
 #pragma once
-//#include "Transform.h"
 #include <vector>
-
 #include "../Scene/SceneObject.h"
 
 namespace sea_core
 {
+	//Todo Components should follow each other in memory
 	class Transform;
-	class Texture2D;
 
 	class BaseComponent;
-	class RenderComponent;
-
-	//Todo Components should follow each other in memory
+	class RendererComponent;
 	
 	class GameObject : public SceneObject
 	{
@@ -35,6 +31,6 @@ namespace sea_core
 		
 	private:
 		std::vector<BaseComponent*> m_Components;
-		std::vector<const RenderComponent*> m_RenderComponents;
+		std::vector<RendererComponent*> m_RenderComponents;
 	};
 }

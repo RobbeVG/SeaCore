@@ -193,6 +193,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Components\Messaging\Messages\MonoBehaviourMessages.h" />
     <ClInclude Include="Components\Behaviour\BehaviourComponent.h" />
     <ClInclude Include="Components\Messaging\BroadcastManager.h" />
     <ClInclude Include="Components\Messaging\Broadcaster.h" />
@@ -211,7 +212,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="Helpers\Singleton.h" />
     <ClInclude Include="Graphics\Texture2D.h" />
     <ClInclude Include="Components\Transform.h" />
-    <ClInclude Include="Components\Render\RenderComponent.h" />
+    <ClInclude Include="Components\Render\RendererComponent.h" />
     <ClInclude Include="Components\Render\SpriteRenderer.h" />
     <ClInclude Include="Components\Render\TextRenderer.h" />
   </ItemGroup>
@@ -220,7 +221,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClCompile Include="Components\Messaging\BroadcastManager.cpp" />
     <ClCompile Include="Components\Messaging\Broadcaster.cpp" />
     <ClCompile Include="Components\BaseComponent.cpp" />
-    <ClCompile Include="Components\Render\RenderComponent.cpp" />
+    <ClCompile Include="Components\Render\RendererComponent.cpp" />
     <ClCompile Include="Graphics\Font.cpp" />
     <ClCompile Include="Components\Behaviour\MonoBehaviour.cpp" />
     <ClCompile Include="Objects\GameObject.cpp" />

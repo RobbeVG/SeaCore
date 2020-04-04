@@ -3,10 +3,7 @@
 #include "GameObject.h"
 
 #include "../Components/Transform.h"
-#include "../Components/Render/RenderComponent.h"
-#include "../Graphics/Renderer.h"
-#include "../Graphics/Texture2D.h"
-#include "../Resources/ResourceManager.h"
+#include "../Components/Render/RendererComponent.h"
 
 sea_core::GameObject::GameObject()
 	: m_Components()
@@ -20,7 +17,7 @@ sea_core::GameObject::~GameObject()
 	{
 		delete component;
 	}
-	for (const RenderComponent* renderComponent : m_RenderComponents)
+	for (const RendererComponent* renderComponent : m_RenderComponents)
 	{
 		delete renderComponent;
 	}
@@ -30,15 +27,19 @@ void sea_core::GameObject::Update(const float deltaSeconds)
 {
 	for (BaseComponent* component : m_Components)
 	{
-		component->Update(deltaSeconds);
+		component->UpdateComponent(deltaSeconds);
+	}
+	for (RendererComponent* component : m_RenderComponents)
+	{
+		component->UpdateComponent(deltaSeconds);
 	}
 }
 
 void sea_core::GameObject::Render(const float deltaSeconds) const
 {
-	for (const RenderComponent* const renderComponent : m_RenderComponents)
+	for (const RendererComponent* const component : m_RenderComponents)
 	{
-		renderComponent->Render(deltaSeconds);
+		component->RenderComponent(deltaSeconds);
 	}
 	
 	const auto pos = GetTransform()->GetPosition();

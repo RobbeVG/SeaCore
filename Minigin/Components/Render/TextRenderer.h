@@ -1,16 +1,16 @@
 #pragma once
 #include "../../Graphics/Font.h"
-#include "RenderComponent.h"
+#include "RendererComponent.h"
 
 namespace sea_core
 {
-	class TextRenderer final : public RenderComponent
+	class TextRenderer final : public RendererComponent
 	{
 	public:
 		explicit TextRenderer(const std::string& text, const Font* font);
 		~TextRenderer() override;
 		
-		void DerivedRender(const float deltaSeconds) const override;
+		void Render(const float deltaSeconds) const override;
 		void SetText(const std::string& text);
 		
 	private:

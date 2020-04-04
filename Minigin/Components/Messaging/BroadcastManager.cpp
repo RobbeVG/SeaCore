@@ -8,24 +8,16 @@
 //
 // https://cp-algorithms.com/string/string-hashing.html
 
-sea_core::Broadcaster* sea_core::BroadcastManager::GetBroadcaster(const char* broadcastName, BaseComponent* pMessenger)
+sea_core::Broadcaster* sea_core::BroadcastManager::GetBroadcaster(const char* broadcastName)
 {
 	const size_t id = std::hash<const char*>()(broadcastName);
 
-	Broadcaster* pBroadcaster;
 	const std::unordered_map<size_t, Broadcaster*>::const_iterator it = m_Broadcasters.find(id);
-	if (it == m_Broadcasters.end()) //No broadcaster has been found
+	if (it != m_Broadcasters.end()) //No broadcaster has been found
 	{
-		pBroadcaster = new Broadcaster();
-		m_Broadcasters[id] = pBroadcaster;
+		return (*it).second;
 	}
-	else //Broadcaster has been found
-	{
-		pBroadcaster = (*it).second;
-	}
-	if (pMessenger)
-		pBroadcaster->AddComponent(pMessenger);
-	return pBroadcaster;
+	return nullptr;
 }
 
 sea_core::BroadcastManager::~BroadcastManager()
@@ -34,4 +26,16 @@ sea_core::BroadcastManager::~BroadcastManager()
 	{
 		delete broadcaster.second;
 	}
+}
+
+bool sea_core::BroadcastManager::AddBroadcaster(const char* broadcastName, Broadcaster* pBroadcaster)
+{
+	const size_t id = std::hash<const char*>()(broadcastName);
+	const std::unordered_map<size_t, Broadcaster*>::const_iterator it = m_Broadcasters.find(id);
+	if (it == m_Broadcasters.end()) //No broadcaster has been found
+	{
+		m_Broadcasters[id] = pBroadcaster;
+		return true;
+	}
+	return false;
 }

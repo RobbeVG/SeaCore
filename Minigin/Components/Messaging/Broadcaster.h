@@ -8,15 +8,17 @@ namespace sea_core
 	/*
 	 * 
 	 */
-	class Broadcaster
+	class Broadcaster final
 	{
-		friend class BroadcastManager;
-		Broadcaster() = default; //Private constructor only the broadcast manager can create broadcaster
+	protected:
+		explicit Broadcaster(const char* name);
+	public:
+		~Broadcaster() = default;
+		
 		void AddComponent(BaseComponent* pMessageComponent);
 		void EraseComponent(BaseComponent* pMessageComponent);
-		
-	public:
 		void Send(const unsigned int message) const;
+		
 	private:		
 		std::unordered_set<BaseComponent*> m_Components;
 	};

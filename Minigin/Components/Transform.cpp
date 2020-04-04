@@ -10,7 +10,7 @@ sea_core::Transform::~Transform()
 {
 }
 
-void sea_core::Transform::Update(float)
+void sea_core::Transform::UpdateComponent(float)
 {
 }
 

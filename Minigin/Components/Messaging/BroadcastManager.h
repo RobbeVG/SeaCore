@@ -8,10 +8,14 @@ namespace sea_core
 	class BroadcastManager final : public Singleton<BroadcastManager>
 	{
 	public:
-		Broadcaster* GetBroadcaster(const char* broadcastName, BaseComponent* pMessenger);
+		
+		Broadcaster* GetBroadcaster(const char* broadcastName);
 		~BroadcastManager();
 		
-	private:		
+	private:
+		friend class Broadcaster;
+		bool AddBroadcaster(const char* broadcastName, Broadcaster* pBroadcaster);
+		
 		std::unordered_map<size_t, Broadcaster*> m_Broadcasters;
 	};
 }

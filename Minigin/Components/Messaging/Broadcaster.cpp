@@ -2,6 +2,11 @@
 #include "Broadcaster.h"
 #include "../BaseComponent.h"
 
+sea_core::Broadcaster::Broadcaster(const char* name)
+{
+	BroadcastManager::GetInstance().AddBroadcaster(name, this);
+}
+
 void sea_core::Broadcaster::Send(const unsigned int message) const
 {
 	for (BaseComponent* const component : m_Components)

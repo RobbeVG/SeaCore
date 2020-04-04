@@ -1,5 +1,5 @@
 #pragma once
-#include "../Managers/SceneManager.h"
+#include "SceneManager.h"
 
 namespace sea_core
 {

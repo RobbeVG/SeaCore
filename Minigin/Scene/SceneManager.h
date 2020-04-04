@@ -1,5 +1,7 @@
 #pragma once
 #include "../Helpers/Singleton.h"
+#include <vector>
+#include <string>
 
 namespace sea_core
 {
@@ -7,13 +9,13 @@ namespace sea_core
 	class SceneManager final : public Singleton<SceneManager>
 	{
 	public:
+		~SceneManager();
+		
 		Scene& CreateScene(const std::string& name);
 
 		void Update(float deltaSecond);
 		void Render(float deltaSecond);
 	private:
-		friend class Singleton<SceneManager>;
-		SceneManager() = default;
-		std::vector<std::shared_ptr<Scene>> m_Scenes;
+		std::vector<Scene*> m_Scenes;
 	};
 }
