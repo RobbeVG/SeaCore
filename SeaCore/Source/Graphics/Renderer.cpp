@@ -3,7 +3,7 @@
 #include <SDL.h>
 
 
-#include "../Scene/SceneManager.h"
+#include "Scene/SceneManager.h"
 #include "Texture2D.h"
 
 void sea_core::Renderer::Init(SDL_Window * window)
