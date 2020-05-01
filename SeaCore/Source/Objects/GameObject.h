@@ -20,17 +20,32 @@ namespace sea_core
 		GameObject& operator=(const GameObject& other) = delete;
 		GameObject& operator=(GameObject&& other) = delete;
 
-		void Update(float deltaSeconds) override;
-		void Render(float deltaSeconds) const override;
+		void Start() override;
+		void Render(float percentageTowardsNextFrame) const override;
+		void Update() override;
+		void LateUpdate() override;
+		void FixedUpdate() override;
 
 		void SetPosition(float x, float y) const;
 		
 		void AddComponent(BaseComponent* component);
+
+		template<typename T>
+		T* GetComponent();
+
+		template<typename T>
+		std::vector<T*> GetComponents();
 		
 		Transform* GetTransform() const;
-		
+
 	private:
 		std::vector<BaseComponent*> m_Components;
 		std::vector<RendererComponent*> m_RenderComponents;
 	};
+
+	template <typename T>
+	T* GameObject::GetComponent()
+	{
+		
+	}
 }

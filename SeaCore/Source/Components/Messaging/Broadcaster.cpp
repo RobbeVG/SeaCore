@@ -1,27 +1,36 @@
 #include "SeaCore_pch.h"
 #include "Broadcaster.h"
-#include "../BaseComponent.h"
+#include "Components/BaseComponent.h"
 
-sea_core::Broadcaster::Broadcaster(const char* name)
+
+//sea_core::Broadcaster::Broadcaster(GameObject* object, const char* name)
+//	: m_pReciter(nullptr)
+//{
+//	BroadcastTracker::GetInstance().AddBroadcaster(object, name, this);
+//}
+
+sea_core::Broadcaster::Broadcaster(BaseComponent* pReciter, bool subscribeOwn)
+	: m_pReciter(pReciter)
 {
-	BroadcastManager::GetInstance().AddBroadcaster(name, this);
+	if (subscribeOwn)
+		Subscribe(pReciter);
 }
 
-void sea_core::Broadcaster::Send(const unsigned int message) const
+void sea_core::Broadcaster::Subscribe(BaseComponent* pListener)
 {
-	for (BaseComponent* const component : m_Components)
+	m_Subscribers.insert(pListener);
+}
+
+void sea_core::Broadcaster::UnSubscribe(BaseComponent* pListener)
+{
+	m_Subscribers.erase(pListener);
+}
+
+void sea_core::Broadcaster::Broadcast(const unsigned message)
+{
+	for (BaseComponent* component : m_Subscribers)
 	{
 		if (component != nullptr)
 			component->ReceiveMessage(message);
 	}
-}
-
-void sea_core::Broadcaster::EraseComponent(BaseComponent* pMessageComponent)
-{
-	m_Components.erase(pMessageComponent);
-}
-
-void sea_core::Broadcaster::AddComponent(BaseComponent* pMessageComponent)
-{
-	m_Components.insert(pMessageComponent);
 }

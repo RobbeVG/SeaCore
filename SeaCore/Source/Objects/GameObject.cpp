@@ -4,6 +4,7 @@
 
 #include "../Components/Transform.h"
 #include "../Components/Render/RendererComponent.h"
+#include "Helpers/Time.h"
 
 sea_core::GameObject::GameObject()
 	: m_Components()
@@ -23,26 +24,50 @@ sea_core::GameObject::~GameObject()
 	}
 }
 
-void sea_core::GameObject::Update(const float deltaSeconds)
+void sea_core::GameObject::Update()
 {
 	for (BaseComponent* component : m_Components)
 	{
-		component->UpdateComponent(deltaSeconds);
+		component->UpdateComponent(Time.GetDeltaTime());
 	}
 	for (RendererComponent* component : m_RenderComponents)
 	{
-		component->UpdateComponent(deltaSeconds);
+		component->UpdateComponent(Time.GetDeltaTime());
 	}
 }
 
-void sea_core::GameObject::Render(const float deltaSeconds) const
+void sea_core::GameObject::LateUpdate()
+{
+	for (BaseComponent* component : m_Components)
+	{
+		component->LateUpdateComponent();
+	}
+}
+
+void sea_core::GameObject::Start()
+{
+	for (BaseComponent* component : m_Components)
+	{
+		component->StartComponent();
+	}
+}
+
+void sea_core::GameObject::Render(const float percentageTowardsNextFrame) const
 {
 	for (const RendererComponent* const component : m_RenderComponents)
 	{
-		component->RenderComponent(deltaSeconds);
+		component->RenderComponent(percentageTowardsNextFrame);
 	}
 	
 	const auto pos = GetTransform()->GetPosition();
+}
+
+void sea_core::GameObject::FixedUpdate()
+{
+	for (BaseComponent* component : m_Components)
+	{
+		component->FixedUpdateComponent(Time.GetFixedDeltaTime());
+	}
 }
 
 void sea_core::GameObject::SetPosition(const float x, const float y) const

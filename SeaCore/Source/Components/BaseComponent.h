@@ -1,6 +1,6 @@
 #pragma once
 #include "../Objects/GameObject.h"
-#include "Messaging/BroadcastManager.h"
+#include "Messaging/BroadcastTracker.h"
 
 namespace sea_core
 {
@@ -19,10 +19,10 @@ namespace sea_core
 	class BaseComponent
 	{
 	public:
-		GameObject* GetParent() const;
+		GameObject* GetParent() const { return m_pParent; }
+		Broadcaster* GetBroadcaster() const { return m_pBroadcaster; }
 		
-		virtual void UpdateComponent(const float deltaSeconds) = 0;
-		virtual void ReceiveMessage(const unsigned int) {}
+		virtual void ReceiveMessage(const unsigned int) {} //TODO Update, Render, ...
 		
 		virtual ~BaseComponent() = default;
 	protected:
@@ -31,22 +31,19 @@ namespace sea_core
 		BaseComponent(BaseComponent&& other) noexcept = delete;
 		BaseComponent& operator=(const BaseComponent& other) = delete;
 		BaseComponent& operator=(BaseComponent&& other) noexcept = delete;
-
-		void BroadcastMessage(const unsigned int message) const;
-		void AssignBroadcaster(const std::string& broadcasterName);
-
+		
+		void BroadcastMessage(const unsigned int message) const; //TODO Broadcast message
 		
 	//Add component gameObject
 		friend class GameObject;		
 		GameObject* m_pParent;
+		/*
+		 * @Brief Broadcaster of the component
+		 * @Remark: You can assign this to a broadcaster. It will be automatically added to the BroadcastManager
+		 */
+		Broadcaster* m_pBroadcaster;
 
 	private:
 		virtual inline void AttachToContainer(std::vector<BaseComponent*>& components, std::vector<RendererComponent*>&) { components.push_back(this); } //Force inline?
-
-		/*
-		 * @Brief Broadcaster of the component
-		 * @Remark: To initialize use -> m_pBroadcaster = GetBroadcaster("NameOfBroadCast")
-		 */
-		Broadcaster const* m_pBroadcaster;
 	};
 }

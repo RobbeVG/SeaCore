@@ -6,6 +6,7 @@ struct SDL_Renderer;
 
 namespace sea_core
 {
+	class Scene;
 	class Texture2D;
 	/**
 	 * Simple RAII wrapper for the SDL renderer
@@ -14,7 +15,9 @@ namespace sea_core
 	{
 	public:
 		void Init(SDL_Window* window);
-		void Render(float deltaSecond) const;
+
+		void Clear() const;
+		void Present() const;
 		void Destroy();
 
 		void RenderTexture(const Texture2D& texture, float x, float y) const;

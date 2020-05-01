@@ -1,10 +1,11 @@
 #include "SeaCore_pch.h"
 #include "BehaviourComponent.h"
-#include "../Messaging/Messages/MonoBehaviourMessages.h"
+#include "Components/Messaging/Messages.h"
 
 sea_core::BehaviourComponent::BehaviourComponent()
 	: m_IsEnabled(true)
 {
+	m_pBroadcaster = new Broadcaster(this);
 }
 
 void sea_core::BehaviourComponent::UpdateComponent(const float deltaSeconds)
@@ -16,5 +17,5 @@ void sea_core::BehaviourComponent::UpdateComponent(const float deltaSeconds)
 void sea_core::BehaviourComponent::SetEnabled(const bool enabled)
 {
 	m_IsEnabled = enabled;
-	BroadcastMessage(enabled? Messages::MonoBehaviour::OnEnable : Messages::MonoBehaviour::OnDisable);
+	BroadcastMessage(enabled? unsigned int(Messages::MonoBehaviour::OnEnable) : unsigned int(Messages::MonoBehaviour::OnDisable));
 }

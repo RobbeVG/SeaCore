@@ -9,7 +9,7 @@ namespace sea_core
 		BehaviourComponent();
 	public:
 		virtual ~BehaviourComponent() = default;
-		void inline UpdateComponent(const float deltaSeconds) override final;
+		void ReceiveMessage(const unsigned) override;
 		void SetEnabled(bool enabled);
 		
 	protected:

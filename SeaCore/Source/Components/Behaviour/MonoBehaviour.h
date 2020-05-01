@@ -8,7 +8,7 @@ namespace sea_core
 	class MonoBehaviour : public BehaviourComponent
 	{
 	public:
-		explicit MonoBehaviour(const char* broadcasterName);
+		explicit MonoBehaviour();
 		virtual ~MonoBehaviour() override = default;
 		
 	protected:
@@ -16,9 +16,12 @@ namespace sea_core
 		virtual void OnEnable() {}
 		virtual void OnCollisionEnter() {}
 		virtual void OnCollisionExit() {}
-		virtual void OnBeginPlay() {}
+		virtual void Start() {}
 		virtual void Update(const float deltaSeconds) override = 0;
+		virtual void FixedUpdate() {}
+		virtual void LateUpdate() {}
 
+		
 	private:
 		void ReceiveMessage(const unsigned message) override final;
 	};

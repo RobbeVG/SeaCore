@@ -18,6 +18,60 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Project\DefaultProject.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source\Project\SCProject.cpp" />
+    <ClCompile Include="Source\Base\SeaCore.cpp" />
+    <ClCompile Include="Source\Base\SeaCore_pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Source\Components\BaseComponent.cpp" />
+    <ClCompile Include="Source\Components\Behaviour\BehaviourComponent.cpp" />
+    <ClCompile Include="Source\Components\Behaviour\MonoBehaviour.cpp" />
+    <ClCompile Include="Source\Components\Messaging\Broadcaster.cpp" />
+    <ClCompile Include="Source\Components\Render\RendererComponent.cpp" />
+    <ClCompile Include="Source\Components\Render\SpriteRenderer.cpp" />
+    <ClCompile Include="Source\Components\Render\TextRenderer.cpp" />
+    <ClCompile Include="Source\Components\Transform.cpp" />
+    <ClCompile Include="Source\Graphics\Font.cpp" />
+    <ClCompile Include="Source\Graphics\Renderer.cpp" />
+    <ClCompile Include="Source\Graphics\Texture2D.cpp" />
+    <ClCompile Include="Source\Input\InputManager.cpp" />
+    <ClCompile Include="Source\Objects\GameObject.cpp" />
+    <ClCompile Include="Source\Resources\ResourceManager.cpp" />
+    <ClCompile Include="Source\Scene\Scene.cpp" />
+    <ClCompile Include="Source\Scene\SceneManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\Project\DefaultProject.h" />
+    <ClInclude Include="Source\Project\SCProject.h" />
+    <ClInclude Include="Source\Base\SeaCore.h" />
+    <ClInclude Include="Source\Base\SeaCore_pch.h" />
+    <ClInclude Include="Source\Components\BaseComponent.h" />
+    <ClInclude Include="Source\Components\Behaviour\BehaviourComponent.h" />
+    <ClInclude Include="Source\Components\Behaviour\MonoBehaviour.h" />
+    <ClInclude Include="Source\Components\Messaging\Broadcaster.h" />
+    <ClInclude Include="Source\Components\Messaging\Messages.h" />
+    <ClInclude Include="Source\Components\Render\RendererComponent.h" />
+    <ClInclude Include="Source\Components\Render\SpriteRenderer.h" />
+    <ClInclude Include="Source\Components\Render\TextRenderer.h" />
+    <ClInclude Include="Source\Components\Transform.h" />
+    <ClInclude Include="Source\Graphics\Font.h" />
+    <ClInclude Include="Source\Graphics\Renderer.h" />
+    <ClInclude Include="Source\Graphics\Texture2D.h" />
+    <ClInclude Include="Source\Helpers\Singleton.h" />
+    <ClInclude Include="Source\Input\InputManager.h" />
+    <ClInclude Include="Source\Objects\GameObject.h" />
+    <ClInclude Include="Source\Resources\ResourceManager.h" />
+    <ClInclude Include="Source\Scene\Scene.h" />
+    <ClInclude Include="Source\Scene\SceneManager.h" />
+    <ClInclude Include="Source\Scene\SceneObject.h" />
+    <ClInclude Include="Source\Helpers\Time.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{41B0EC47-D48C-4B0F-951B-D98595FFAE0A}</ProjectGuid>
@@ -75,13 +129,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(ProjectDir)Build\Executable\$(PlatformName)\$(Configuration)</OutDir>
-    <IntDir>$(ProjectDir)Build\Data\$(PlatformName)\$(Configuration)</IntDir>
+    <OutDir>$(ProjectDir)Build\Executable\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)Build\Data\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(ProjectDir)Build\Executable\$(PlatformName)\$(Configuration)</OutDir>
-    <IntDir>$(ProjectDir)Build\Data\$(PlatformName)\$(Configuration)</IntDir>
+    <OutDir>$(ProjectDir)Build\Executable\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)Build\Data\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -90,8 +144,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(ProjectDir)Build\Executable\$(PlatformName)\$(Configuration)</OutDir>
-    <IntDir>$(ProjectDir)Build\Data\$(PlatformName)\$(Configuration)</IntDir>
+    <OutDir>$(ProjectDir)Build\Executable\$(PlatformName)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)Build\Data\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -101,9 +155,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\glm\glm;$(ProjectDir)Source;$(ProjectDir)Source\Base;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source\Base;$(ProjectDir)Source;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\glm\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>SeaCore_pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -125,9 +181,11 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\glm\glm;$(ProjectDir)Source;$(ProjectDir)Source\Base;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source\Base;$(ProjectDir)Source;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\glm\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>SeaCore_pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -151,9 +209,11 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\glm\glm;$(ProjectDir)Source;$(ProjectDir)Source\Base;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source\Base;$(ProjectDir)Source;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\glm\glm;</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>SeaCore_pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -179,9 +239,11 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\glm\glm;$(ProjectDir)Source;$(ProjectDir)Source\Base</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source\Base;$(ProjectDir)Source;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\glm\glm;</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>SeaCore_pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
+      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -197,100 +259,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_image\lib\x64\*.dll" "$(OutputPath)" /R /Y
 xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Components\Messaging\Messages\MonoBehaviourMessages.h" />
-    <ClInclude Include="Components\Behaviour\BehaviourComponent.h" />
-    <ClInclude Include="Components\Messaging\BroadcastManager.h" />
-    <ClInclude Include="Components\Messaging\Broadcaster.h" />
-    <ClInclude Include="Components\BaseComponent.h" />
-    <ClInclude Include="Graphics\Font.h" />
-    <ClInclude Include="Components\Behaviour\MonoBehaviour.h" />
-    <ClInclude Include="Objects\GameObject.h" />
-    <ClInclude Include="Input\InputManager.h" />
-    <ClInclude Include="Base\SeaCore.h" />
-    <ClInclude Include="Base\SeaCore_pch.h" />
-    <ClInclude Include="Scene\SceneObject.h" />
-    <ClInclude Include="Graphics\Renderer.h" />
-    <ClInclude Include="Resources\ResourceManager.h" />
-    <ClInclude Include="Scene\Scene.h" />
-    <ClInclude Include="Scene\SceneManager.h" />
-    <ClInclude Include="Helpers\Singleton.h" />
-    <ClInclude Include="Graphics\Texture2D.h" />
-    <ClInclude Include="Components\Transform.h" />
-    <ClInclude Include="Components\Render\RendererComponent.h" />
-    <ClInclude Include="Components\Render\SpriteRenderer.h" />
-    <ClInclude Include="Components\Render\TextRenderer.h" />
-    <ClInclude Include="Source\Base\SeaCore.h" />
-    <ClInclude Include="Source\Base\SeaCore_pch.h" />
-    <ClInclude Include="Source\Components\BaseComponent.h" />
-    <ClInclude Include="Source\Components\Behaviour\BehaviourComponent.h" />
-    <ClInclude Include="Source\Components\Behaviour\MonoBehaviour.h" />
-    <ClInclude Include="Source\Components\Messaging\Broadcaster.h" />
-    <ClInclude Include="Source\Components\Messaging\BroadcastManager.h" />
-    <ClInclude Include="Source\Components\Messaging\Messages\MonoBehaviourMessages.h" />
-    <ClInclude Include="Source\Components\Render\RendererComponent.h" />
-    <ClInclude Include="Source\Components\Render\SpriteRenderer.h" />
-    <ClInclude Include="Source\Components\Render\TextRenderer.h" />
-    <ClInclude Include="Source\Components\Transform.h" />
-    <ClInclude Include="Source\Graphics\Font.h" />
-    <ClInclude Include="Source\Graphics\Renderer.h" />
-    <ClInclude Include="Source\Graphics\Texture2D.h" />
-    <ClInclude Include="Source\Helpers\Singleton.h" />
-    <ClInclude Include="Source\Input\InputManager.h" />
-    <ClInclude Include="Source\Objects\GameObject.h" />
-    <ClInclude Include="Source\Resources\ResourceManager.h" />
-    <ClInclude Include="Source\Scene\Scene.h" />
-    <ClInclude Include="Source\Scene\SceneManager.h" />
-    <ClInclude Include="Source\Scene\SceneObject.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Components\Behaviour\BehaviourComponent.cpp" />
-    <ClCompile Include="Components\Messaging\BroadcastManager.cpp" />
-    <ClCompile Include="Components\Messaging\Broadcaster.cpp" />
-    <ClCompile Include="Components\BaseComponent.cpp" />
-    <ClCompile Include="Components\Render\RendererComponent.cpp" />
-    <ClCompile Include="Graphics\Font.cpp" />
-    <ClCompile Include="Components\Behaviour\MonoBehaviour.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Objects\GameObject.cpp" />
-    <ClCompile Include="Input\InputManager.cpp" />
-    <ClCompile Include="Base\SeaCore.cpp" />
-    <ClCompile Include="Base\SeaCore_pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MiniginPCH.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="Graphics\Renderer.cpp" />
-    <ClCompile Include="Resources\ResourceManager.cpp" />
-    <ClCompile Include="Scene\Scene.cpp" />
-    <ClCompile Include="Scene\SceneManager.cpp" />
-    <ClCompile Include="Graphics\Texture2D.cpp" />
-    <ClCompile Include="Components\Transform.cpp" />
-    <ClCompile Include="Components\Render\SpriteRenderer.cpp" />
-    <ClCompile Include="Components\Render\TextRenderer.cpp" />
-    <ClCompile Include="Source\Base\SeaCore.cpp" />
-    <ClCompile Include="Source\Base\SeaCore_pch.cpp" />
-    <ClCompile Include="Source\Components\BaseComponent.cpp" />
-    <ClCompile Include="Source\Components\Behaviour\BehaviourComponent.cpp" />
-    <ClCompile Include="Source\Components\Behaviour\MonoBehaviour.cpp" />
-    <ClCompile Include="Source\Components\Messaging\Broadcaster.cpp" />
-    <ClCompile Include="Source\Components\Messaging\BroadcastManager.cpp" />
-    <ClCompile Include="Source\Components\Render\RendererComponent.cpp" />
-    <ClCompile Include="Source\Components\Render\SpriteRenderer.cpp" />
-    <ClCompile Include="Source\Components\Render\TextRenderer.cpp" />
-    <ClCompile Include="Source\Components\Transform.cpp" />
-    <ClCompile Include="Source\Graphics\Font.cpp" />
-    <ClCompile Include="Source\Graphics\Renderer.cpp" />
-    <ClCompile Include="Source\Graphics\Texture2D.cpp" />
-    <ClCompile Include="Source\Graphics\Texture2DTests.cpp" />
-    <ClCompile Include="Source\Input\InputManager.cpp" />
-    <ClCompile Include="Source\Objects\GameObject.cpp" />
-    <ClCompile Include="Source\Resources\ResourceManager.cpp" />
-    <ClCompile Include="Source\Scene\Scene.cpp" />
-    <ClCompile Include="Source\Scene\SceneManager.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

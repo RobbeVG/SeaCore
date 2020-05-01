@@ -1,21 +1,35 @@
 #pragma once
-#include "../Helpers/Singleton.h"
-#include <vector>
+#include "Helpers/Singleton.h"
+#include <map>
 #include <string>
 
 namespace sea_core
 {
 	class Scene;
+	
 	class SceneManager final : public Singleton<SceneManager>
 	{
 	public:
-		~SceneManager();
+		~SceneManager() override;
 		
 		Scene& CreateScene(const std::string& name);
+		//void AddScene(Scene* pScene);
+		Scene& GetActiveScene();
+		
+		bool ActivateNextScene();
+		bool ActivatePreviousScene();		
+		bool ActivateScene(unsigned int id);
 
-		void Update(float deltaSecond);
-		void Render(float deltaSecond);
+		//void Swap(unsigned int idFirst, unsigned int idSecond);
+
 	private:
-		std::vector<Scene*> m_Scenes;
+		void SetActiveScene(Scene* pScene);
+		Scene* GetScene(unsigned int id);
+		
+		std::map<unsigned int, Scene*> m_Scenes;
+		Scene* m_ActiveScene = nullptr;
+		
+
+		unsigned int m_IdCounter = 0;
 	};
 }

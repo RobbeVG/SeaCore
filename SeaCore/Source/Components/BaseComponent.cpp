@@ -1,6 +1,6 @@
 #include "SeaCore_pch.h"
 #include "BaseComponent.h"
-#include "Messaging/BroadcastManager.h"
+#include "Messaging/BroadcastTracker.h"
 
 
 sea_core::BaseComponent::BaseComponent()
@@ -12,15 +12,5 @@ sea_core::BaseComponent::BaseComponent()
 void sea_core::BaseComponent::BroadcastMessage(const unsigned int message) const
 {
 	if (m_pBroadcaster)
-		m_pBroadcaster->Send(message);
-}
-
-void sea_core::BaseComponent::AssignBroadcaster(const std::string& broadcasterName)
-{
-	m_pBroadcaster = (broadcasterName.empty())? nullptr : BroadcastManager::GetInstance().GetBroadcaster(broadcasterName.c_str());
-}
-
-sea_core::GameObject* sea_core::BaseComponent::GetParent() const
-{
-	return m_pParent;
+		m_pBroadcaster->Broadcast(message);
 }

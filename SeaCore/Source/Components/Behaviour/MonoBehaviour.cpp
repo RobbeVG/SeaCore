@@ -1,35 +1,37 @@
 #include "SeaCore_pch.h"
-#include "../Messaging/Messages/MonoBehaviourMessages.h"
 #include "MonoBehaviour.h"
+
+#include "Components/Messaging/Messages.h"
 
 
 //https://stackoverflow.com/questions/44540747/what-is-the-difference-between-component-behaviour-and-monobehaviour-and-why-t
 
 
-sea_core::MonoBehaviour::MonoBehaviour(const char* broadcasterName)
+sea_core::MonoBehaviour::MonoBehaviour()
 {
-	AssignBroadcaster(broadcasterName);
+	m_pBroadcaster->Subscribe(this);
 }
 
-void sea_core::MonoBehaviour::ReceiveMessage(const unsigned message)
+void sea_core::MonoBehaviour::ReceiveMessage(const unsigned message) 
 {
 	const Messages::MonoBehaviour enumMessage = Messages::MonoBehaviour(message);
 	switch (enumMessage) {
-		case Messages::OnEnable:
+		case Messages::MonoBehaviour::OnEnable:
 			OnEnable();
 			break;
-		case Messages::OnDisable:
+		case Messages::MonoBehaviour::OnDisable:
 			OnDisable();
 			break;
-		case Messages::OnBeginPlay:
-			OnBeginPlay();
+		case Messages::MonoBehaviour::Start:
+			Start();
 			break;
-		case Messages::OnCollisionEnter:
+		case Messages::MonoBehaviour::OnCollisionEnter:
 			OnCollisionEnter();
 			break;
-		case Messages::OnCollisionExit:
+		case Messages::MonoBehaviour::OnCollisionExit:
 			OnCollisionExit();
 			break;
-		default: ;
+		default:
+			break;
 	}
 }

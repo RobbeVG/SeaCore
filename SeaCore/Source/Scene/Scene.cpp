@@ -1,20 +1,25 @@
 #include "SeaCore_pch.h"
 #include "Scene.h"
+#include "SceneObject.h"
 
-#include "../Objects/GameObject.h"
+#include "Helpers/Time.h"
 
 using namespace sea_core;
 
-unsigned int Scene::m_IdCounter = 0;
-
-Scene::Scene(const std::string& name) : m_Name(name) {}
+Scene::Scene(const std::string& name, unsigned int id)
+	: m_Time()
+	, m_Name(name)
+	, m_Id(id)
+	, m_LoadingState(false)
+{}
 
 Scene::~Scene()
 {
+	//delete m_Time;
 	for (SceneObject* object : m_Objects)
 	{
 		delete object;
-	}	
+	}
 }
 
 void Scene::Add(SceneObject* object)
@@ -22,19 +27,43 @@ void Scene::Add(SceneObject* object)
 	m_Objects.push_back(object);
 }
 
-void Scene::Update(float deltaSecond)
+void Scene::Start()
 {
-	for(auto& object : m_Objects)
+	for (auto& object : m_Objects)
 	{
-		object->Update(deltaSecond);
+		object->Start();
 	}
 }
 
-void Scene::Render(float deltaSecond) const
+void Scene::FixedUpdate()
 {
+	for (auto& object : m_Objects)
+	{
+		object->FixedUpdate();
+	}
+}
+
+void Scene::Update()
+{
+	for (auto& object : m_Objects)
+	{
+		object->Update();
+	}
+	for (auto& object : m_Objects)
+	{
+		object->LateUpdate();
+	}
+}
+
+void Scene::Render(const Renderer* pRenderer, const float percentage) const
+{
+	pRenderer->Clear();
+	
 	for (const auto& object : m_Objects)
 	{
-		object->Render(deltaSecond);
+		object->Render(percentage);
 	}
+
+	pRenderer->Present();
 }
 

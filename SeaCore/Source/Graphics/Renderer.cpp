@@ -4,6 +4,8 @@
 
 
 #include "Scene/SceneManager.h"
+#include "Scene/Scene.h"
+
 #include "Texture2D.h"
 
 void sea_core::Renderer::Init(SDL_Window * window)
@@ -15,12 +17,13 @@ void sea_core::Renderer::Init(SDL_Window * window)
 	}
 }
 
-void sea_core::Renderer::Render(float deltaSecond) const
+void sea_core::Renderer::Clear() const
 {
 	SDL_RenderClear(m_Renderer);
+}
 
-	SceneManager::GetInstance().Render(deltaSecond);
-	
+void sea_core::Renderer::Present() const
+{
 	SDL_RenderPresent(m_Renderer);
 }
 
