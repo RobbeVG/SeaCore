@@ -2,15 +2,14 @@
 #include "Scene.h"
 #include "SceneObject.h"
 
-#include "Helpers/Time.h"
+#include "Time/Time.h"
 
 using namespace sea_core;
 
 Scene::Scene(const std::string& name, unsigned int id)
-	: m_Time()
-	, m_Name(name)
+	: m_Name(name)
 	, m_Id(id)
-	, m_LoadingState(false)
+	, m_LoadingState(LoadingState::NotLoaded)
 {}
 
 Scene::~Scene()
@@ -55,13 +54,13 @@ void Scene::Update()
 	}
 }
 
-void Scene::Render(const Renderer* pRenderer, const float percentage) const
+void Scene::Render(const Renderer* pRenderer) const
 {
 	pRenderer->Clear();
 	
-	for (const auto& object : m_Objects)
+	for (const SceneObject* const& object : m_Objects)
 	{
-		object->Render(percentage);
+		object->Render();
 	}
 
 	pRenderer->Present();

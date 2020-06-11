@@ -1,5 +1,10 @@
 #include "SeaCore_pch.h"
 #include "Broadcaster.h"
+
+
+#include <map>
+#include <functional>
+
 #include "Components/BaseComponent.h"
 
 
@@ -26,11 +31,11 @@ void sea_core::Broadcaster::UnSubscribe(BaseComponent* pListener)
 	m_Subscribers.erase(pListener);
 }
 
-void sea_core::Broadcaster::Broadcast(const unsigned message)
-{
-	for (BaseComponent* component : m_Subscribers)
-	{
-		if (component != nullptr)
-			component->ReceiveMessage(message);
-	}
-}
+//void sea_core::Broadcaster::Broadcast(const unsigned message)
+//{
+//	for (BaseComponent* component : m_Subscribers)
+//	{
+//		if (component != nullptr)
+//			component->ReceiveMessage(message);
+//	}
+//}

@@ -1,5 +1,8 @@
 #pragma once
+#include <queue>
 #include <unordered_set>
+
+//#include <map>
 //#include "Components/BaseComponent.h"
 
 namespace sea_core
@@ -24,6 +27,8 @@ namespace sea_core
 
 	private:		
 		std::unordered_set<BaseComponent*> m_Subscribers;
+		std::queue<unsigned int> m_Messages;
+		
 		BaseComponent* const m_pReciter;
 	};
 }

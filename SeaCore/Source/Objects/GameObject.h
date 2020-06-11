@@ -1,14 +1,14 @@
 #pragma once
-#include <vector>
+#include <unordered_set>
+
 #include "../Scene/SceneObject.h"
+#include "Messaging/Channels/Bus.h"
 
 namespace sea_core
 {
 	//Todo Components should follow each other in memory
 	class Transform;
-
 	class BaseComponent;
-	class RendererComponent;
 	
 	class GameObject : public SceneObject
 	{
@@ -21,31 +21,42 @@ namespace sea_core
 		GameObject& operator=(GameObject&& other) = delete;
 
 		void Start() override;
-		void Render(float percentageTowardsNextFrame) const override;
+		void Render() const override;
 		void Update() override;
-		void LateUpdate() override;
 		void FixedUpdate() override;
+		void LateUpdate() override;
 
 		void SetPosition(float x, float y) const;
-		
+
 		void AddComponent(BaseComponent* component);
 
-		template<typename T>
-		T* GetComponent();
+		//MessagingChannel::Bus* GetChannel() const { return m_pComponentChannel; }
+		//MessagingChannel::Bus* GetComponentChannel() const { return m_pComponentChannel; }
+		MessagingChannel::Bus* GetMonoBehaviourChannel() const { return m_pMonoBehaviourChannel; }
 
-		template<typename T>
-		std::vector<T*> GetComponents();
-		
-		Transform* GetTransform() const;
+		Transform* GetTransform() const { return m_pTransform; }
 
+		//template<typename T>
+		//T* GetComponent();
+
+		//template<typename T>
+		//std::vector<T*> GetComponents();
 	private:
-		std::vector<BaseComponent*> m_Components;
-		std::vector<RendererComponent*> m_RenderComponents;
+		Transform* m_pTransform;
+		std::unordered_set<BaseComponent*> m_Components;
+
+		//MessagingChannel::Bus* m_pComponentChannel;
+		MessagingChannel::Bus* m_pMonoBehaviourChannel;
 	};
 
-	template <typename T>
-	T* GameObject::GetComponent()
-	{
-		
-	}
+	//template <typename T>
+	//T* GameObject::GetComponent()
+	//{
+	//	retur
+	//}
+
+	//template <typename T>
+	//std::vector<T*> GameObject::GetComponents()
+	//{
+	//}
 }

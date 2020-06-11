@@ -6,6 +6,9 @@
 #include "Components/Behaviour/MonoBehaviour.h"
 #include "Components/Render/SpriteRenderer.h"
 #include "Components/Render/TextRenderer.h"
+#include "Scene/SceneManager.h"
+#include "Scene/Scene.h"
+#include "Components/Transform.h"
 
 
 sea_core::DefaultProject::DefaultProject()
@@ -20,7 +23,7 @@ sea_core::DefaultProject::~DefaultProject()
 void sea_core::DefaultProject::Load()
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
-
+	
 	GameObject* object = new GameObject();
 	object->AddComponent(new SpriteRenderer("Resources/background.jpg"));
 	scene.Add(object);
@@ -39,20 +42,31 @@ void sea_core::DefaultProject::Load()
 
 	GameObject* fpsCounter = new GameObject();
 	fpsCounter->AddComponent(new FpsRenderer());
-	fpsCounter->SetPosition(0.0f, 5.0f);
+	fpsCounter->SetPosition(320.0f, 300.0f);
 	scene.Add(fpsCounter);
 }
 
-void sea_core::FpsRenderer::Start()
+sea_core::FpsRenderer::FpsRenderer()
 {
 	const auto font = ResourceManager::GetInstance().LoadFont("Resources/Lingua.otf", 36);
-	
+
 	m_FpsText = new TextRenderer("60", font);
-	m_pParent->AddComponent(m_FpsText);
 }
 
-void sea_core::FpsRenderer::Update(const float deltaSeconds)
+void sea_core::FpsRenderer::OnStart()
 {
-	m_FpsText->SetText(std::to_string(Time.GetFramesPerSeconds()));
+	m_FpsText->AttachToParent(GetParent());
 }
 
+//void sea_core::FpsRenderer::OnStart()
+//{
+//	const auto font = ResourceManager::GetInstance().LoadFont("Resources/Lingua.otf", 36);
+//	
+//	m_FpsText = new TextRenderer("60", font);
+//	GetParent()->AddComponent(m_FpsText);
+//}
+
+void sea_core::FpsRenderer::Update()
+{
+	m_FpsText->SetText(std::to_string(Time().GetFramesPerSeconds()));
+}

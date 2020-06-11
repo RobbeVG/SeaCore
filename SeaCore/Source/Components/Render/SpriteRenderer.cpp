@@ -9,9 +9,9 @@ sea_core::SpriteRenderer::SpriteRenderer(const std::string& fileName)
 	SetTexture(fileName);
 }
 
-void sea_core::SpriteRenderer::Render(const float) const
+void sea_core::SpriteRenderer::Render() const
 {	
-	const glm::vec3 location = m_pParent->GetTransform()->GetPosition();
+	const glm::vec3 location = GetParent()->GetTransform()->GetPosition();
 	Renderer::GetInstance().RenderTexture(*m_pTexture, location.x, location.y);
 }
 

@@ -7,11 +7,11 @@ namespace sea_core
 {
 	class TextRenderer;
 	
-	class DefaultProject : public SCProject
+	class DefaultProject final : public SCProject
 	{
 	public:
 		explicit DefaultProject();
-		~DefaultProject() override;
+		~DefaultProject();
 
 
 		void Load() override;
@@ -20,13 +20,13 @@ namespace sea_core
 
 	class FpsRenderer final : public MonoBehaviour
 	{
+	public:
+		FpsRenderer();
 	protected:
-		void Start() override;
-		void Update(const float deltaSeconds) override;
+		void OnStart() override;
+		void Update() override;
 
 	private:
 		TextRenderer* m_FpsText;
 	};
-	
 }
-

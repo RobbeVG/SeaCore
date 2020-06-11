@@ -11,14 +11,12 @@ namespace sea_core
 	class Transform final : public BaseComponent
 	{
 	public:
-		Transform();
+		Transform(GameObject* pParent);
 		~Transform() override;
-		void UpdateComponent(const float) override;
 		
 		const glm::vec3& GetPosition() const { return m_Position; }
 		void SetPosition(float x, float y, float z);
-
-
+		
 	private:
 		glm::vec3 m_Position;
 	};

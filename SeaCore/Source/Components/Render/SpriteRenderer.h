@@ -10,7 +10,7 @@ namespace sea_core
 		explicit SpriteRenderer(const std::string& fileName);
 		~SpriteRenderer() override;
 
-		void Render(const float deltaSeconds) const override;
+		void Render() const override;
 		void SetTexture(const std::string& filename);
 		
 	private:

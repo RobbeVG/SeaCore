@@ -1,5 +1,5 @@
 #pragma once
-#include "Helpers/Time.h"
+#include "Time/Time.h"
 
 namespace sea_core
 {	
@@ -32,7 +32,7 @@ namespace sea_core
 		void Start();
 		void FixedUpdate();
 		void Update();
-		void Render(const Renderer* pRenderer, float percentage) const;
+		void Render(const Renderer* pRenderer) const;
 		//void Render();
 
 		//void OnGui() {};

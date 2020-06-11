@@ -1,72 +1,69 @@
 #include <SeaCore_pch.h>
-
 #include "GameObject.h"
 
-#include "../Components/Transform.h"
-#include "../Components/Render/RendererComponent.h"
-#include "Helpers/Time.h"
+#include "Components/Transform.h"
+#include "Messages.h"
+#include "Messaging/Message/Event.h"
+#include "Time/Time.h"
 
 sea_core::GameObject::GameObject()
 	: m_Components()
 {
-	m_Components.push_back(new Transform());
+	m_pTransform = new Transform(this);
+
+	m_pMonoBehaviourChannel = new MessagingChannel::Bus();
 }
 
 sea_core::GameObject::~GameObject()
 {
+	delete m_pTransform;
 	for (BaseComponent* component : m_Components)
 	{
 		delete component;
 	}
-	for (const RendererComponent* renderComponent : m_RenderComponents)
-	{
-		delete renderComponent;
-	}
+	delete m_pMonoBehaviourChannel;
 }
 
 void sea_core::GameObject::Update()
 {
 	for (BaseComponent* component : m_Components)
 	{
-		component->UpdateComponent(Time.GetDeltaTime());
+		component->UpdateComponent();
 	}
-	for (RendererComponent* component : m_RenderComponents)
-	{
-		component->UpdateComponent(Time.GetDeltaTime());
-	}
+
 }
 
 void sea_core::GameObject::LateUpdate()
 {
-	for (BaseComponent* component : m_Components)
-	{
-		component->LateUpdateComponent();
-	}
+	//for (BaseComponent* component : m_Components)
+	//{
+	//	component->LateUpdateComponent();
+	//}
 }
 
 void sea_core::GameObject::Start()
 {
-	for (BaseComponent* component : m_Components)
-	{
-		component->StartComponent();
-	}
+	m_pMonoBehaviourChannel->SendMessage(new MessagingMessages::Event(m_pMonoBehaviourChannel, nullptr, Messages::Convert(Messages::MonoBehaviour::OnStart)));
+	
+	//for (BaseComponent* component : m_Components)
+	//{
+	//	component->StartComponent();
+	//}
 }
 
-void sea_core::GameObject::Render(const float percentageTowardsNextFrame) const
+void sea_core::GameObject::Render() const
 {
-	for (const RendererComponent* const component : m_RenderComponents)
+	for (BaseComponent* component : m_Components)
 	{
-		component->RenderComponent(percentageTowardsNextFrame);
+		component->RenderComponent();
 	}
-	
-	const auto pos = GetTransform()->GetPosition();
 }
 
 void sea_core::GameObject::FixedUpdate()
 {
 	for (BaseComponent* component : m_Components)
 	{
-		component->FixedUpdateComponent(Time.GetFixedDeltaTime());
+		component->FixedUpdateComponent();
 	}
 }
 
@@ -82,11 +79,12 @@ void sea_core::GameObject::SetPosition(const float x, const float y) const
 //}
 void sea_core::GameObject::AddComponent(BaseComponent* component)
 {
-	component->m_pParent = this;
-	component->AttachToContainer(m_Components, m_RenderComponents);
+	if (m_Components.find(component) != m_Components.end())
+		return;
+
+	m_Components.insert(component);
+
+	if (component->GetParent() != this)
+		component->AttachToParent(this);
 }
 
-sea_core::Transform* sea_core::GameObject::GetTransform() const
-{
-	return static_cast<Transform*>(m_Components.front());
-}

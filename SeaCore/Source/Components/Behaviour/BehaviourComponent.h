@@ -3,20 +3,22 @@
 
 namespace sea_core
 {
-	class BehaviourComponent : public BaseComponent
+	class BehaviourComponent : virtual public BaseComponent
 	{
 	protected:
 		BehaviourComponent();
 	public:
+		virtual void UpdateComponent() override;
 		virtual ~BehaviourComponent() = default;
-		void ReceiveMessage(const unsigned) override;
-		void SetEnabled(bool enabled);
+		
+		virtual void SetEnabled(bool enabled);
+		bool IsEnabled() const { return m_IsEnabled; }
 		
 	protected:
-		virtual void Update(const float deltaSeconds) = 0;
-		
+		virtual void Update() = 0;
+		virtual void OnStart() {}
+
 	private:
-		void AttachToContainer(std::vector<BaseComponent*>& components, std::vector<RendererComponent*>&) override final { components.push_back(this);  }
 		bool m_IsEnabled;
 	};
 }

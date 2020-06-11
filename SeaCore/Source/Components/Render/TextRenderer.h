@@ -11,7 +11,7 @@ namespace sea_core
 		explicit TextRenderer(const std::string& text, const Font* font);
 		~TextRenderer() override;
 		
-		void Render(const float deltaSeconds) const override;
+		void Render() const override;
 		void SetText(const std::string& text);
 		
 	private:

@@ -1,10 +1,6 @@
 #pragma once
 #include <string>
 
-#include "Objects/GameObject.h"
-#include "Scene/SceneManager.h"
-#include "Scene/Scene.h"
-
 namespace sea_core
 {
 	struct ProjectSettings
@@ -30,9 +26,10 @@ namespace sea_core
 
 	class SCProject
 	{
+	public:
+		virtual ~SCProject() = default;
 	protected:
 		explicit SCProject(const ProjectSettings& projectSettings);
-		virtual ~SCProject() = default;
 
 	public:
 		virtual void Load() = 0;
@@ -40,5 +37,4 @@ namespace sea_core
 	private:
 		ProjectSettings m_ProjectSettings;
 	};
-
 }

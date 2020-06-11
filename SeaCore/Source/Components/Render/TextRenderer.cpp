@@ -22,9 +22,9 @@ sea_core::TextRenderer::~TextRenderer()
 	delete m_pFont;
 }
 
-void sea_core::TextRenderer::Render(const float) const
-{	
-	const glm::vec3 location = m_pParent->GetTransform()->GetPosition();
+void sea_core::TextRenderer::Render() const
+{
+	const glm::vec3 location = GetParent()->GetTransform()->GetPosition();
 	Renderer::GetInstance().RenderTexture(*m_pTexture, location.x, location.y);	
 }
 

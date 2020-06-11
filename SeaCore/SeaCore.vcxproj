@@ -19,8 +19,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ComponentContainer.cpp" />
+    <ClCompile Include="Source\Messaging\MessagingSystemsManager.cpp" />
+    <ClCompile Include="Source\Messaging\Channels\Bus.cpp" />
+    <ClCompile Include="Source\Messaging\Channels\DataType.cpp" />
+    <ClCompile Include="Source\Messaging\Channels\PointToPoint.cpp" />
+    <ClCompile Include="Source\Messaging\Channels\PublishSubscribe.cpp" />
+    <ClCompile Include="Source\Messaging\Endpoints\Endpoint.cpp" />
+    <ClCompile Include="Source\Messaging\Filters\Routers\Router.cpp" />
+    <ClCompile Include="Source\Allocators\DoubleLinkedAllocator.cpp" />
+    <ClCompile Include="Source\Components\ComponentManager.cpp" />
+    <ClCompile Include="Source\Components\Physics\PhysicsComponent.cpp" />
     <ClCompile Include="Source\Project\DefaultProject.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Project\SCProject.cpp" />
     <ClCompile Include="Source\Base\SeaCore.cpp" />
     <ClCompile Include="Source\Base\SeaCore_pch.cpp">
@@ -32,7 +43,7 @@
     <ClCompile Include="Source\Components\BaseComponent.cpp" />
     <ClCompile Include="Source\Components\Behaviour\BehaviourComponent.cpp" />
     <ClCompile Include="Source\Components\Behaviour\MonoBehaviour.cpp" />
-    <ClCompile Include="Source\Components\Messaging\Broadcaster.cpp" />
+    <ClCompile Include="Source\Broadcaster.cpp" />
     <ClCompile Include="Source\Components\Render\RendererComponent.cpp" />
     <ClCompile Include="Source\Components\Render\SpriteRenderer.cpp" />
     <ClCompile Include="Source\Components\Render\TextRenderer.cpp" />
@@ -45,8 +56,31 @@
     <ClCompile Include="Source\Resources\ResourceManager.cpp" />
     <ClCompile Include="Source\Scene\Scene.cpp" />
     <ClCompile Include="Source\Scene\SceneManager.cpp" />
+    <ClCompile Include="Source\Messaging\Filters\Translators\Translator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ComponentContainer.h" />
+    <ClInclude Include="Source\Messaging\MessagingSystemsManager.h" />
+    <ClInclude Include="Source\Messaging\Channels\Bus.h" />
+    <ClInclude Include="Source\Messaging\Filter.h" />
+    <ClInclude Include="Source\Messaging\Message\Command.h" />
+    <ClInclude Include="Source\Messaging\Message\Document.h" />
+    <ClInclude Include="Source\Messaging\Message\Event.h" />
+    <ClInclude Include="Source\Helpers\StrongTemplates.h" />
+    <ClInclude Include="Source\Messaging\Channels\DataType.h" />
+    <ClInclude Include="Source\Messaging\Channels\PointToPoint.h" />
+    <ClInclude Include="Source\Messaging\Channels\PublishSubscribe.h" />
+    <ClInclude Include="Source\Messaging\Channel.h" />
+    <ClInclude Include="Source\Messaging\Endpoint.h" />
+    <ClInclude Include="Source\Messaging\Message.h" />
+    <ClInclude Include="Source\Messaging\Filters\Router.h" />
+    <ClInclude Include="Source\Messaging\Pipe.h" />
+    <ClInclude Include="Source\Messaging\SendAndReceiveInterface.h" />
+    <ClInclude Include="Source\Allocators\DoubleLinkedAllocator.h" />
+    <ClInclude Include="Source\Allocators\MemoryAllocator.h" />
+    <ClInclude Include="Source\Components\ComponentManager.h" />
+    <ClInclude Include="Source\Components\Physics\PhysicsComponent.h" />
+    <ClInclude Include="Source\Helpers\EnumHelpers.h" />
     <ClInclude Include="Source\Project\DefaultProject.h" />
     <ClInclude Include="Source\Project\SCProject.h" />
     <ClInclude Include="Source\Base\SeaCore.h" />
@@ -54,8 +88,8 @@
     <ClInclude Include="Source\Components\BaseComponent.h" />
     <ClInclude Include="Source\Components\Behaviour\BehaviourComponent.h" />
     <ClInclude Include="Source\Components\Behaviour\MonoBehaviour.h" />
-    <ClInclude Include="Source\Components\Messaging\Broadcaster.h" />
-    <ClInclude Include="Source\Components\Messaging\Messages.h" />
+    <ClInclude Include="Source\Broadcaster.h" />
+    <ClInclude Include="Source\Messages.h" />
     <ClInclude Include="Source\Components\Render\RendererComponent.h" />
     <ClInclude Include="Source\Components\Render\SpriteRenderer.h" />
     <ClInclude Include="Source\Components\Render\TextRenderer.h" />
@@ -70,7 +104,8 @@
     <ClInclude Include="Source\Scene\Scene.h" />
     <ClInclude Include="Source\Scene\SceneManager.h" />
     <ClInclude Include="Source\Scene\SceneObject.h" />
-    <ClInclude Include="Source\Helpers\Time.h" />
+    <ClInclude Include="Source\Time\Time.h" />
+    <ClInclude Include="Source\Messaging\Filters\Translator.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

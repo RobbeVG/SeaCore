@@ -4,17 +4,14 @@
 #include <SDL.h>
 #include <thread>
 
-#include "../Components/Render/SpriteRenderer.h"
-#include "../Components/Render/TextRenderer.h"
-#include "../Graphics/Renderer.h"
+#include "../Resources/ResourceManager.h"
 
 #include "../Input/InputManager.h"
-#include "../Resources/ResourceManager.h"
-#include "../Scene/SceneManager.h"
-
-#include "../Objects/GameObject.h"
 
 #include "../Scene/Scene.h"
+#include "../Scene/SceneManager.h"
+
+#include "../Graphics/Renderer.h"
 
 using namespace std;
 
@@ -35,8 +32,9 @@ void sea_core::SeaCore::Run()
 		auto& input = InputManager::GetInstance();
 
 		m_Project->Load();
+		delete m_Project;
 		
-		const float fixedDeltaTime = Time.GetFixedDeltaTime();
+		const float fixedDeltaTime = Time().GetFixedDeltaTime();
 		
 		bool running = true;
 		while (running)
@@ -48,15 +46,15 @@ void sea_core::SeaCore::Run()
 				scene->Start();
 
 
-			auto lastTime = Time.Now();
+			auto lastTime = Time().Now();
 			float lag = 0.0f;
+
 
 			while (running && (scene->GetId() == sceneManager.GetActiveScene().GetId()))
 			{
-				auto currentTime = Time.Now();
+				auto currentTime = Time().Now();
 				const float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
-
-				Time.m_DeltaTime.deltaTime = deltaTime;
+				Time().m_DeltaTime.deltaTime = deltaTime;
 				
 				lastTime = currentTime;
 				lag += deltaTime;
@@ -67,7 +65,8 @@ void sea_core::SeaCore::Run()
 					scene->FixedUpdate();
 					lag -= fixedDeltaTime;
 				}
-
+				
+				Time().m_FpsTime.UpdateFps(deltaTime);
 				
 				scene->Update();
 				//Update();
@@ -75,9 +74,9 @@ void sea_core::SeaCore::Run()
 
 				//Render();
 
-				Time.m_PercentageNextFrame = lag / fixedDeltaTime; //-> time between frames = render(lag / MS_PER_UPDATE) READ BOOK p132-133
+				Time().m_PercentageNextFrame = lag / fixedDeltaTime; //-> time between frames = render(lag / MS_PER_UPDATE) READ BOOK p132-133
 				
-				scene->Render(); 
+				scene->Render(&renderer); 
 
 				//OnGui();
 
@@ -113,88 +112,11 @@ void sea_core::SeaCore::Awake()
 	Renderer::GetInstance().Init(m_Window);
 }
 
-//void sea_core::SeaCore::LoadProject()
-//{
-	//auto& scene = SceneManager::GetInstance().CreateScene("Demo");
-
-	//GameObject* object = new GameObject();
-	//object->AddComponent(new SpriteRenderer("Resources/background.jpg"));
-	//scene.Add(object);
-
-	//object = new GameObject();
-	//object->AddComponent(new SpriteRenderer("Resources/logo.png"));
-	//object->SetPosition(216, 180);
-	//scene.Add(object);
-
-	//const auto font = ResourceManager::GetInstance().LoadFont("Resources/Lingua.otf", 36);
-
-	//GameObject* textObject = new GameObject();
-	//textObject->AddComponent(new TextRenderer("Programming 4 Assignment", font));
-	//textObject->SetPosition(80, 20);
-	//scene.Add(textObject);
-
-	//GameObject* fpsCounter = new GameObject();
-	//TextRenderer* text = new TextRenderer("60", font);
-	//fpsCounter->AddComponent(text);
-	//
-	//fpsCounter->SetPosition(80, 20);
-	//scene.Add(fpsCounter);
-//}
-
-//void sea_core::SeaCore::OnEnable()
-//{
-//}
-//
-//void sea_core::SeaCore::Start()
-//{
-//}
-//
-//void sea_core::SeaCore::FixedUpdate()
-//{
-//}
-//
-//void sea_core::SeaCore::Update()
-//{
-//}
-//
-//void sea_core::SeaCore::LateUpdate()
-//{
-//}
-//
-//void sea_core::SeaCore::Render()
-//{
-//}
-//
-//void sea_core::SeaCore::OnGui()
-//{
-//}
-//
-//void sea_core::SeaCore::OnDisable()
-//{
-//}
-//
-//void sea_core::SeaCore::OnDestroy()
-//{
-//}
-
 void sea_core::SeaCore::Destroy()
 {
 	Renderer::GetInstance().Destroy();
 	SDL_DestroyWindow(m_Window);
 	m_Window = nullptr;
 	SDL_Quit();
+
 }
-
-
-//bool doContinue = true;
-//while (doContinue)
-//{
-//	const auto currentTime = high_resolution_clock::now();
-//	
-//	doContinue = input.ProcessInput();
-//	sceneManager.Update();
-//	renderer.Render();
-//	
-//	auto sleepTime = duration_cast<duration<float>>(currentTime + milliseconds(MsPerFrame) - high_resolution_clock::now());
-//	this_thread::sleep_for(sleepTime);
-//}

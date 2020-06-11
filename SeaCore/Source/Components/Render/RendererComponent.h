@@ -10,18 +10,16 @@ namespace sea_core
 		explicit RendererComponent();
 	public:
 		virtual ~RendererComponent() = default;
-		void inline UpdateComponent(const float deltaSeconds) override final;
-		void RenderComponent(const float deltaSeconds) const;
+		void RenderComponent() override final;
 
 		void SetEnabled(bool const enabled) { m_IsEnabled = enabled; }
 		
 	protected:
-		virtual void Render(const float deltaSeconds) const = 0;
-		virtual void Update(const float) const {}
-		virtual void ReceiveMessage(const unsigned) override {}
+		virtual void Render() const = 0;
+		virtual void Update() const {}
 		
 	private:
-		inline void AttachToContainer(std::vector<BaseComponent*>&, std::vector<RendererComponent*>& renderComponents) override final { renderComponents.push_back(this); };
+		//inline void AttachToContainer(std::vector<BaseComponent*>&, std::vector<RendererComponent*>& renderComponents) override final { renderComponents.push_back(this); };
 		
 		bool m_IsEnabled;
 		bool m_IsVisible;
