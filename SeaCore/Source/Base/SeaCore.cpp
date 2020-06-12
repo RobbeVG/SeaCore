@@ -1,5 +1,7 @@
 #include "SeaCore_pch.h"
 #include "SeaCore.h"
+
+#include <Box2D/Dynamics/b2Body.h>
 #include <chrono>
 #include <SDL.h>
 #include <thread>
@@ -10,7 +12,7 @@
 
 #include "../Scene/Scene.h"
 #include "../Scene/SceneManager.h"
-
+#include "../Physics/Physics.h"
 #include "../Graphics/Renderer.h"
 
 using namespace std;
@@ -23,7 +25,10 @@ void sea_core::SeaCore::Run()
 	ResourceManager::GetInstance().Init("Data/");
 
 	//StartUpTime::m_TimeAtStartUp = 0.0f;
+
+	//Physics()->Step()
 	
+
 	//Time.GetTimeSinceStartUp() = 50.f;
 	//Time::TimesinceStartupLoaded;
 	{
@@ -45,10 +50,8 @@ void sea_core::SeaCore::Run()
 			if (!scene->IsLoaded())
 				scene->Start();
 
-
 			auto lastTime = Time().Now();
 			float lag = 0.0f;
-
 
 			while (running && (scene->GetId() == sceneManager.GetActiveScene().GetId()))
 			{
@@ -58,13 +61,21 @@ void sea_core::SeaCore::Run()
 				
 				lastTime = currentTime;
 				lag += deltaTime;
-
+				
 				running = input.ProcessInput();				
-				while (lag >= fixedDeltaTime) //-> Can lag not be 0???
+				while (lag >= fixedDeltaTime) //-> Catch up 
 				{
+					Physics()->Step(fixedDeltaTime, 6, 2);
+
+					b2Body* body = Physics()->GetBodyList();
+					b2Vec2 position = body->GetPosition();
+					float angle = body->GetAngle();
+					printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
+					
 					scene->FixedUpdate();
 					lag -= fixedDeltaTime;
 				}
+
 				
 				Time().m_FpsTime.UpdateFps(deltaTime);
 				
@@ -79,8 +90,6 @@ void sea_core::SeaCore::Run()
 				scene->Render(&renderer); 
 
 				//OnGui();
-
-
 			}
 			//OnDisable();
 		}

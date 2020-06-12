@@ -1,6 +1,8 @@
 #include "SeaCore_pch.h"
 #include "DefaultProject.h"
 
+#include <Box2D/Box2D.h>
+
 
 
 #include "Components/Behaviour/MonoBehaviour.h"
@@ -9,6 +11,7 @@
 #include "Scene/SceneManager.h"
 #include "Scene/Scene.h"
 #include "Components/Transform.h"
+#include "Physics/Physics.h"
 
 
 sea_core::DefaultProject::DefaultProject()
@@ -44,6 +47,33 @@ void sea_core::DefaultProject::Load()
 	fpsCounter->AddComponent(new FpsRenderer());
 	fpsCounter->SetPosition(320.0f, 300.0f);
 	scene.Add(fpsCounter);
+
+	//ground
+	b2BodyDef groundBodyDef;
+	groundBodyDef.position.Set(0.0f, -10.0f);
+
+	b2Body* groundBody = Physics()->CreateBody(&groundBodyDef);
+
+	b2PolygonShape groundBox;
+	groundBox.SetAsBox(50.0f, 10.0f);
+
+	groundBody->CreateFixture(&groundBox, 0.0f);
+
+	//box
+	b2BodyDef bodyDef;
+	bodyDef.type = b2_dynamicBody;
+	bodyDef.position.Set(0.0f, 4.0f);
+	b2Body* body = Physics()->CreateBody(&bodyDef);
+
+	b2PolygonShape dynamicBox;
+	dynamicBox.SetAsBox(1.0f, 1.0f);
+
+	b2FixtureDef fixtureDef;
+	fixtureDef.shape = &dynamicBox;
+	fixtureDef.density = 1.0f;
+	fixtureDef.friction = 0.3f;
+
+	body->CreateFixture(&fixtureDef);
 }
 
 sea_core::FpsRenderer::FpsRenderer()

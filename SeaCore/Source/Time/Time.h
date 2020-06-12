@@ -12,8 +12,6 @@ namespace sea_core
 
 	class StaticTime : public Singleton<StaticTime>
 	{
-
-
 		struct DeltaTime
 		{
 			DeltaTime()
@@ -108,7 +106,6 @@ namespace sea_core
 		void SetTimeScale(const float timeScale = 1.0f) { m_DeltaTime.timeScale = timeScale; }
 
 	private:
-		friend class Time;
 		friend class SeaCore;
 	};
 	
