@@ -1,4 +1,5 @@
 #pragma once
+#include <SDL.h>
 #include "Helpers/Singleton.h"
 
 struct SDL_Window;
@@ -21,10 +22,16 @@ namespace sea_core
 		void Destroy();
 
 		void RenderTexture(const Texture2D& texture, float x, float y) const;
-		void RenderTexture(const Texture2D& texture, float x, float y, float width, float height) const;
+		void RenderTexture(const Texture2D& texture, const SDL_Rect& dst) const;
+		void RenderTexture(const Texture2D& texture, const SDL_Rect& src, const SDL_Rect& dst) const;
+		void RenderTexture(const Texture2D& texture, const SDL_Rect& src, float x, float y) const;
+		
+		//void RenderTexture(const Texture2D& texture, SDL_Rect dst);
+		//void RenderTexture(const Texture2D& texture, SDL_Rect src, SDL_Rect dst);
 
 		SDL_Renderer* GetSDLRenderer() const { return m_Renderer; }
 	private:
+		void RenderTexture(const Texture2D& texture, const SDL_Rect* src, SDL_Rect dst) const;
 		SDL_Renderer* m_Renderer{};
 	};
 }

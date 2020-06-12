@@ -20,3 +20,9 @@ void sea_core::RendererComponent::RenderComponent()
 	if (m_IsEnabled && m_IsVisible)
 		Render();
 }
+
+void sea_core::RendererComponent::UpdateComponent()
+{
+	if (m_IsEnabled)
+		Update();
+}

@@ -15,9 +15,16 @@ namespace sea_core
 		~Transform() override;
 		
 		const glm::vec3& GetPosition() const { return m_Position; }
+		const glm::vec3& GetScale() const { return m_Scale; }
+		const glm::vec3& GetRotation() const { return m_Rotation; }
+		
 		void SetPosition(float x, float y, float z);
+		void SetScale(float x, float y, float z);
+		void SetRotation(float x, float y, float z);
 		
 	private:
 		glm::vec3 m_Position;
+		glm::vec3 m_Rotation;
+		glm::vec3 m_Scale;
 	};
 }

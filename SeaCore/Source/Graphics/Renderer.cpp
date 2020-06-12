@@ -41,16 +41,36 @@ void sea_core::Renderer::RenderTexture(const Texture2D& texture, const float x, 
 	SDL_Rect dst;
 	dst.x = static_cast<int>(x);
 	dst.y = static_cast<int>(y);
-	SDL_QueryTexture(texture.GetSDLTexture(), nullptr, nullptr, &dst.w, &dst.h);
-	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
+	dst.w = texture.GetWidth();
+	dst.h = texture.GetHeight();
+
+	RenderTexture(texture, nullptr, dst);
 }
 
-void sea_core::Renderer::RenderTexture(const Texture2D& texture, const float x, const float y, const float width, const float height) const
+void sea_core::Renderer::RenderTexture(const Texture2D& texture, const SDL_Rect& dst) const
+{
+	RenderTexture(texture, nullptr, dst);
+}
+
+void sea_core::Renderer::RenderTexture(const Texture2D& texture, const SDL_Rect& src, const SDL_Rect& dst) const
+{
+	RenderTexture(texture, &src, dst);
+}
+
+void sea_core::Renderer::RenderTexture(const Texture2D& texture, const SDL_Rect& src, const float x, const float y) const
 {
 	SDL_Rect dst;
 	dst.x = static_cast<int>(x);
 	dst.y = static_cast<int>(y);
-	dst.w = static_cast<int>(width);
-	dst.h = static_cast<int>(height);
-	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
+	dst.w = src.w;
+	dst.h = src.h;
+	RenderTexture(texture, &src, dst);
+}
+
+void sea_core::Renderer::RenderTexture(const Texture2D& texture, const SDL_Rect* src, SDL_Rect dst) const
+{
+	dst.x -= dst.w / 2;
+	dst.y -= dst.h / 2;
+	
+	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), src, &dst);
 }

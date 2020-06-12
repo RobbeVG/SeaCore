@@ -10,31 +10,28 @@
 #include "../../Graphics/Font.h"
 
 sea_core::TextRenderer::TextRenderer(const std::string& text, const Font* font)
-	: m_Text(text)
+	: TextureRenderer(nullptr)
+	, m_Text(text)
 	, m_pFont(font)
 {
-	SetTextTexture();
+	SetTexture(CreateTextTexture());
 }
 
 sea_core::TextRenderer::~TextRenderer()
 {
-	delete m_pTexture;
 	delete m_pFont;
-}
-
-void sea_core::TextRenderer::Render() const
-{
-	const glm::vec3 location = GetParent()->GetTransform()->GetPosition();
-	Renderer::GetInstance().RenderTexture(*m_pTexture, location.x, location.y);	
 }
 
 void sea_core::TextRenderer::SetText(const std::string& text)
 {
+	if (m_Text == text)
+		return;
+	
 	m_Text = text;
-	SetTextTexture();
+	SetTexture(CreateTextTexture());
 }
 
-void sea_core::TextRenderer::SetTextTexture()
+sea_core::Texture2D* sea_core::TextRenderer::CreateTextTexture() const
 {
 	const SDL_Color color = { 255,255,255 }; // only white text is supported now
 	const auto surf = TTF_RenderText_Blended(m_pFont->GetFont(), m_Text.c_str(), color);
@@ -48,6 +45,6 @@ void sea_core::TextRenderer::SetTextTexture()
 		throw std::runtime_error(std::string("Create text texture from surface failed: ") + SDL_GetError());
 	}
 	SDL_FreeSurface(surf);
-	delete m_pTexture;
-	m_pTexture = new Texture2D(texture);
+	
+	return new Texture2D(texture);
 }

@@ -7,6 +7,7 @@
 
 #include "Components/Behaviour/MonoBehaviour.h"
 #include "Components/Render/SpriteRenderer.h"
+#include "Components/Render/TextureRenderer.h"
 #include "Components/Render/TextRenderer.h"
 #include "Scene/SceneManager.h"
 #include "Scene/Scene.h"
@@ -28,19 +29,20 @@ void sea_core::DefaultProject::Load()
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 	
 	GameObject* object = new GameObject();
-	object->AddComponent(new SpriteRenderer("Resources/background.jpg"));
+	object->AddComponent(new TextureRenderer("Resources/background.jpg"));
+	object->SetPosition(320, 240);
 	scene.Add(object);
 
 	object = new GameObject();
-	object->AddComponent(new SpriteRenderer("Resources/logo.png"));
-	object->SetPosition(216, 180);
+	object->AddComponent(new TextureRenderer("Resources/logo.png"));
+	object->SetPosition(320, 240);
 	scene.Add(object);
 
 	const auto font = ResourceManager::GetInstance().LoadFont("Resources/Lingua.otf", 36);
 
 	GameObject* textObject = new GameObject();
 	textObject->AddComponent(new TextRenderer("Programming 4 Assignment", font));
-	textObject->SetPosition(80, 20);
+	textObject->SetPosition(320, 100);
 	scene.Add(textObject);
 
 	GameObject* fpsCounter = new GameObject();
@@ -74,6 +76,20 @@ void sea_core::DefaultProject::Load()
 	fixtureDef.friction = 0.3f;
 
 	body->CreateFixture(&fixtureDef);
+
+	GameObject* pObject = new GameObject();
+
+	SpriteRendererDesc desc;
+	desc.ClipWidth = 16;
+	desc.ClipHeight= 16;
+	desc.StartRow = 0;
+	desc.EndRow = 0;
+	desc.StartColumn = 0;
+	desc.EndColumn = 7;
+	desc.NrFramesPerSec = 3;
+	pObject->AddComponent(new SpriteRenderer("Resources/Sprites3.png", desc));
+
+	scene.Add(pObject);
 }
 
 sea_core::FpsRenderer::FpsRenderer()

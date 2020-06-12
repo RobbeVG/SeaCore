@@ -11,12 +11,13 @@ namespace sea_core
 	public:
 		virtual ~RendererComponent() = default;
 		void RenderComponent() override final;
+		void UpdateComponent() override final;
 
 		void SetEnabled(bool const enabled) { m_IsEnabled = enabled; }
 		
 	protected:
 		virtual void Render() const = 0;
-		virtual void Update() const {}
+		virtual void Update() {}
 		
 	private:
 		//inline void AttachToContainer(std::vector<BaseComponent*>&, std::vector<RendererComponent*>& renderComponents) override final { renderComponents.push_back(this); };
