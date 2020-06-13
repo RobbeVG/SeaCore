@@ -2,11 +2,13 @@
 
 #include "SCProject.h"
 
-class BubbleBobble : public sea_core::SCProject
+namespace sea_core
 {
-public:
-	explicit BubbleBobble();
+	class BubbleBobble : public SCProject
+	{
+	public:
+		explicit BubbleBobble();
 
-	void Load() override;
-};
-
+		void Load() override;
+	};
+}

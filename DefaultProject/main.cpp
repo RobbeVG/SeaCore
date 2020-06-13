@@ -6,7 +6,7 @@
 #endif
 
 #include "SeaCore.h"
-#include "DefaultProject.h"
+//#include "DefaultProject.h"
 #include "SDL.h"
 
 // #undef main;
@@ -21,8 +21,8 @@ int main(int, char* []) {
 #endif
 
 	sea_core::SeaCore engine;
-	sea_core::DefaultProject* project = new sea_core::DefaultProject();
-	engine.SetProject(project);
+	//sea_core::DefaultProject* project = new sea_core::DefaultProject();
+	//engine.SetProject(project);
 	engine.Run();
 
 #ifdef  _DEBUG

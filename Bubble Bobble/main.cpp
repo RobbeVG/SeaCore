@@ -27,7 +27,7 @@ int main(int, char*[]){
 #endif
 
 	sea_core::SeaCore engine;
-	BubbleBobble* project = new BubbleBobble();
+	sea_core::BubbleBobble* project = new sea_core::BubbleBobble();
 	engine.SetProject(project);
 	engine.Run();
 

@@ -7,11 +7,13 @@
   <PropertyGroup />
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)\SeaCore\Source\Base;$(SolutionDir)\SeaCore\Source;$(TRD_PARTY)SDL2_ttf\include;$(TRD_PARTY)SDL2_image\include;$(TRD_PARTY)SDL2\include;$(TRD_PARTY)box2d\include;$(TRD_PARTY)glm\glm;&lt;different options&gt;;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\SeaCore;$(SolutionDir)\SeaCore\Source;$(SolutionDir)\SeaCore\Source\Base;$(TRD_PARTY)SDL2_ttf\include;$(TRD_PARTY)SDL2_image\include;$(TRD_PARTY)SDL2\include;$(TRD_PARTY)box2d\include;$(TRD_PARTY)glm\glm;&lt;different options&gt;;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <SDLCheck>true</SDLCheck>
+      <WarningLevel>Level4</WarningLevel>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)SeaCore\Library\$(PlatformName)\$(Configuration)\;$(TRD_PARTY)box2d\lib\$(PlatformTarget)\$(Configuration);$(TRD_PARTY)SDL2_ttf\lib\$(PlatformTarget);$(TRD_PARTY)SDL2_image\lib\$(PlatformTarget);$(TRD_PARTY)SDL2\lib\$(PlatformTarget);$(ProgramFiles)\Visual Leak Detector\lib\Win$(PlatformArchitecture);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\SeaCore;$(SolutionDir)SeaCore\Library\$(PlatformName)\$(Configuration)\;$(TRD_PARTY)box2d\lib\$(PlatformTarget)\$(Configuration);$(TRD_PARTY)SDL2_ttf\lib\$(PlatformTarget);$(TRD_PARTY)SDL2_image\lib\$(PlatformTarget);$(TRD_PARTY)SDL2\lib\$(PlatformTarget);$(ProgramFiles)\Visual Leak Detector\lib\Win$(PlatformArchitecture);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;xinput.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
