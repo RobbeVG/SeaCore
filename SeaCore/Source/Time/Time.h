@@ -2,7 +2,9 @@
 #pragma once
 #include <chrono>
 #include <ctime>
-#include "SeaCore.h"
+#include "Helpers/Singleton.h"
+
+//#include "SeaCore.h"
 
 namespace sea_core
 {

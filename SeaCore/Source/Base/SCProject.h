@@ -28,6 +28,7 @@ namespace sea_core
 	{
 	public:
 		virtual ~SCProject() = default;
+		
 	protected:
 		explicit SCProject(const ProjectSettings& projectSettings);
 

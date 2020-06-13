@@ -1,14 +1,15 @@
 #pragma once
-#include "Project/DefaultProject.h"
 struct SDL_Window;
-class SCProject;
 
 namespace sea_core
-{	
-	class SceneManager;
+{
+	class SCProject;
+	
 	class SeaCore
 	{
 	public:
+		SeaCore();
+		
 		void SetProject(SCProject* project) { m_Project = project; }
 		void Run();
 
@@ -31,8 +32,8 @@ namespace sea_core
 		
 	private:
 		static const int MsPerFrame = 16; //16 for 60 fps, 33 for 30 fps
-		SDL_Window* m_Window{};
 
+		SDL_Window* m_Window;
 		SCProject* m_Project;
 	};
 }

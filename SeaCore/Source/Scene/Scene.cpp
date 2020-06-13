@@ -1,5 +1,7 @@
 #include "SeaCore_pch.h"
 #include "Scene.h"
+
+#include "Graphics/Renderer.h"
 #include "SceneObject.h"
 
 #include "Time/Time.h"

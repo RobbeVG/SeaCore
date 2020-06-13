@@ -1,5 +1,6 @@
 #include "SeaCore_pch.h"
 #include "SeaCore.h"
+#include "SCProject.h"
 
 #include <Box2D/Dynamics/b2Body.h>
 #include <chrono>
@@ -16,6 +17,12 @@
 #include "../Graphics/Renderer.h"
 
 using namespace std;
+
+sea_core::SeaCore::SeaCore()
+	: m_Window(nullptr)
+	, m_Project(nullptr)
+{
+}
 
 void sea_core::SeaCore::Run()
 {
@@ -36,12 +43,15 @@ void sea_core::SeaCore::Run()
 		auto& sceneManager = SceneManager::GetInstance();
 		auto& input = InputManager::GetInstance();
 
-		m_Project->Load();
-		delete m_Project;
+		bool running = true;
+		
+		if (m_Project)
+			m_Project->Load();
+		else
+			running = false;
 		
 		const float fixedDeltaTime = Time().GetFixedDeltaTime();
 		
-		bool running = true;
 		while (running)
 		{
 			Scene* scene = &sceneManager.GetActiveScene();
@@ -96,6 +106,8 @@ void sea_core::SeaCore::Run()
 	}
 	
 	Destroy();
+
+	delete m_Project;
 }
 
 void sea_core::SeaCore::Awake()
@@ -127,5 +139,4 @@ void sea_core::SeaCore::Destroy()
 	SDL_DestroyWindow(m_Window);
 	m_Window = nullptr;
 	SDL_Quit();
-
 }

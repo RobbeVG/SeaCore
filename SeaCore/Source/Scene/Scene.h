@@ -2,8 +2,10 @@
 #include "Time/Time.h"
 
 namespace sea_core
-{	
+{
+	class Renderer;
 	class SceneObject;
+	
 	class Scene
 	{
 	public:

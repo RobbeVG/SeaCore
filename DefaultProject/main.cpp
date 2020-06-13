@@ -1,24 +1,18 @@
-#include <iostream>
+#include "SeaCore_pch.h"
 
 #if _DEBUG
 // ReSharper disable once CppUnusedIncludeDirective
 #include <vld.h>
 #endif
 
-#include "Base/SeaCore_pch.h"
-#include "Base/SeaCore.h"
-//#include "BubbleBobble.h"
+#include "SeaCore.h"
+#include "DefaultProject.h"
+#include "SDL.h"
 
-#include <windows.h>
+// #undef main;
 
-
-#include "BubbleBobble.h"
-
-#undef main
-//using namespace sea_core;
-
-int main(int, char*[]){
-	#ifdef  _DEBUG
+int main(int, char* []) {
+#ifdef  _DEBUG
 	AllocConsole();
 	FILE* fp = nullptr;
 	freopen_s(&fp, "CONIN$", "r", stdin);
@@ -27,7 +21,7 @@ int main(int, char*[]){
 #endif
 
 	sea_core::SeaCore engine;
-	BubbleBobble* project = new BubbleBobble();
+	sea_core::DefaultProject* project = new sea_core::DefaultProject();
 	engine.SetProject(project);
 	engine.Run();
 

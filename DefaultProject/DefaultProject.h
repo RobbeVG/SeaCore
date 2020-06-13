@@ -1,6 +1,5 @@
 #pragma once
 #include "Components/Behaviour/MonoBehaviour.h"
-#include "Components/Render/TextRenderer.h"
 #include "SCProject.h"
 
 namespace sea_core 

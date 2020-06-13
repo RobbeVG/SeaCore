@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <TRD_PARTY>$(SolutionDir)3rdParty\</TRD_PARTY>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(SolutionDir)\SeaCore\Source\Base;$(SolutionDir)\SeaCore\Source;$(TRD_PARTY)SDL2_ttf\include;$(TRD_PARTY)SDL2_image\include;$(TRD_PARTY)SDL2\include;$(TRD_PARTY)box2d\include;$(TRD_PARTY)glm\glm;&lt;different options&gt;;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(SolutionDir)SeaCore\Library\$(PlatformName)\$(Configuration)\;$(TRD_PARTY)box2d\lib\$(PlatformTarget)\$(Configuration);$(TRD_PARTY)SDL2_ttf\lib\$(PlatformTarget);$(TRD_PARTY)SDL2_image\lib\$(PlatformTarget);$(TRD_PARTY)SDL2\lib\$(PlatformTarget);$(ProgramFiles)\Visual Leak Detector\lib\Win$(PlatformArchitecture);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;xinput.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="TRD_PARTY">
+      <Value>$(TRD_PARTY)</Value>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

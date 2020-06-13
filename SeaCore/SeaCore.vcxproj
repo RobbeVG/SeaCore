@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ComponentContainer.cpp" />
+    <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Physics\Physics.cpp" />
     <ClCompile Include="Source\Messaging\MessagingSystemsManager.cpp" />
     <ClCompile Include="Source\Messaging\Channels\Bus.cpp" />
@@ -31,9 +32,7 @@
     <ClCompile Include="Source\Allocators\DoubleLinkedAllocator.cpp" />
     <ClCompile Include="Source\Components\ComponentManager.cpp" />
     <ClCompile Include="Source\Components\Physics\PhysicsComponent.cpp" />
-    <ClCompile Include="Source\Project\DefaultProject.cpp" />
-    <ClCompile Include="Source\main.cpp" />
-    <ClCompile Include="Source\Project\SCProject.cpp" />
+    <ClCompile Include="Source\Base\SCProject.cpp" />
     <ClCompile Include="Source\Base\SeaCore.cpp" />
     <ClCompile Include="Source\Base\SeaCore_pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -83,8 +82,7 @@
     <ClInclude Include="Source\Components\ComponentManager.h" />
     <ClInclude Include="Source\Components\Physics\PhysicsComponent.h" />
     <ClInclude Include="Source\Helpers\EnumHelpers.h" />
-    <ClInclude Include="Source\Project\DefaultProject.h" />
-    <ClInclude Include="Source\Project\SCProject.h" />
+    <ClInclude Include="Source\Base\SCProject.h" />
     <ClInclude Include="Source\Base\SeaCore.h" />
     <ClInclude Include="Source\Base\SeaCore_pch.h" />
     <ClInclude Include="Source\Components\BaseComponent.h" />
@@ -125,7 +123,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -152,36 +150,40 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\vld.props" />
+    <Import Project="..\SeaCoreEngine.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\SeaCoreEngine.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\vld.props" />
+    <Import Project="..\SeaCoreEngine.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\SeaCoreEngine.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(ProjectDir)Build\Executable\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(ProjectDir)Build\Library\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)Build\Data\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(ProjectDir)Build\Executable\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(ProjectDir)Build\Library\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)Build\Data\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(ProjectDir)Build\Executable\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(ProjectDir)Build\Library\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)Build\Data\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(ProjectDir)Build\Executable\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(ProjectDir)Build\Library\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)Build\Data\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -189,10 +191,8 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source\Base;$(ProjectDir)Source;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\box2d\include;$(SolutionDir)3rdParty\glm\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>SeaCore_pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -201,8 +201,6 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\SDL2_ttf\lib\x86;$(SolutionDir)3rdParty\SDL2_image\lib\x86;$(SolutionDir)3rdParty\SDL2\lib\x86;$(SolutionDir)3rdPartybox2d\lib\x32\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;xinput.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)3rdParty\SDL2\lib\x86\SDL2.dll" "$(OutputPath)" /R /Y
@@ -215,10 +213,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source\Base;$(ProjectDir)Source;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\box2d\include;$(SolutionDir)3rdParty\glm\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>SeaCore_pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -227,8 +223,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\SDL2_ttf\lib\x64;$(SolutionDir)3rdParty\SDL2_image\lib\x64;$(SolutionDir)3rdParty\box2d\lib\x64\Debug;$(SolutionDir)3rdParty\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;xinput.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)3rdParty\SDL2\lib\x64\SDL2.dll" "$(OutputPath)" /R /Y
@@ -243,10 +237,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source\Base;$(ProjectDir)Source;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\box2d\include;$(SolutionDir)3rdParty\glm\glm;</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>SeaCore_pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -257,8 +249,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\box2d\lib\x32\Release;$(SolutionDir)3rdParty\SDL2_ttf\lib\x86;$(SolutionDir)3rdParty\SDL2_image\lib\x86;$(SolutionDir)3rdParty\SDL2\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;xinput.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)3rdParty\SDL2\lib\x86\SDL2.dll" "$(OutputPath)" /R /Y
@@ -273,10 +263,8 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)Source\Base;$(ProjectDir)Source;$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\SDL2\include;$(SolutionDir)3rdParty\box2d\include;$(SolutionDir)3rdParty\glm\glm;</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>SeaCore_pch.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
@@ -287,8 +275,6 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)3rdParty\box2d\lib\x64\Release;$(SolutionDir)3rdParty\SDL2_ttf\lib\x64;$(SolutionDir)3rdParty\SDL2_image\lib\x64;$(SolutionDir)3rdParty\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;xinput.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(SolutionDir)3rdParty\SDL2\lib\x64\SDL2.dll" "$(OutputPath)" /R /Y
