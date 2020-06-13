@@ -93,9 +93,6 @@
     <ClCompile Include="Source\Messaging\Channels\Bus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ComponentContainer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Messaging\MessagingSystemsManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -114,7 +111,7 @@
     <ClCompile Include="Source\Base\SCProject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DefaultProject.cpp">
+    <ClCompile Include="Source\DefaultProject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -239,9 +236,6 @@
     <ClInclude Include="Source\Messaging\Channels\Bus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ComponentContainer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Messaging\MessagingSystemsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -260,7 +254,7 @@
     <ClInclude Include="Source\Base\SCProject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DefaultProject.h">
+    <ClInclude Include="Source\DefaultProject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
