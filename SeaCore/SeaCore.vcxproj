@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ComponentContainer.cpp" />
+    <ClCompile Include="DefaultProject.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Physics\Physics.cpp" />
     <ClCompile Include="Source\Messaging\MessagingSystemsManager.cpp" />
@@ -60,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ComponentContainer.h" />
+    <ClInclude Include="DefaultProject.h" />
     <ClInclude Include="Source\Physics\Physics.h" />
     <ClInclude Include="Source\Messaging\MessagingSystemsManager.h" />
     <ClInclude Include="Source\Messaging\Channels\Bus.h" />
@@ -123,7 +125,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
