@@ -19,8 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\DefaultProject.cpp" />
-    <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Physics\Physics.cpp" />
     <ClCompile Include="Source\Messaging\MessagingSystemsManager.cpp" />
     <ClCompile Include="Source\Messaging\Channels\Bus.cpp" />
@@ -32,9 +30,9 @@
     <ClCompile Include="Source\Allocators\DoubleLinkedAllocator.cpp" />
     <ClCompile Include="Source\Components\ComponentManager.cpp" />
     <ClCompile Include="Source\Components\Physics\PhysicsComponent.cpp" />
-    <ClCompile Include="Source\Base\SCProject.cpp" />
-    <ClCompile Include="Source\Base\SeaCore.cpp" />
-    <ClCompile Include="Source\Base\SeaCore_pch.cpp">
+    <ClCompile Include="Source\SCProject.cpp" />
+    <ClCompile Include="Source\SeaCore.cpp" />
+    <ClCompile Include="Source\SeaCore_pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -59,7 +57,6 @@
     <ClCompile Include="Source\Components\Render\SpriteRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\DefaultProject.h" />
     <ClInclude Include="Source\Physics\Physics.h" />
     <ClInclude Include="Source\Messaging\MessagingSystemsManager.h" />
     <ClInclude Include="Source\Messaging\Channels\Bus.h" />
@@ -82,9 +79,9 @@
     <ClInclude Include="Source\Components\ComponentManager.h" />
     <ClInclude Include="Source\Components\Physics\PhysicsComponent.h" />
     <ClInclude Include="Source\Helpers\EnumHelpers.h" />
-    <ClInclude Include="Source\Base\SCProject.h" />
-    <ClInclude Include="Source\Base\SeaCore.h" />
-    <ClInclude Include="Source\Base\SeaCore_pch.h" />
+    <ClInclude Include="Source\SCProject.h" />
+    <ClInclude Include="Source\SeaCore.h" />
+    <ClInclude Include="Source\SeaCore_pch.h" />
     <ClInclude Include="Source\Components\BaseComponent.h" />
     <ClInclude Include="Source\Components\Behaviour\BehaviourComponent.h" />
     <ClInclude Include="Source\Components\Behaviour\MonoBehaviour.h" />
@@ -117,26 +114,26 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -170,22 +167,22 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(ProjectDir)Build\Executable\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(ProjectDir)Build\Library\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)Build\Data\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(ProjectDir)Build\Executable\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(ProjectDir)Build\Library\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)Build\Data\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(ProjectDir)Build\Executable\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(ProjectDir)Build\Library\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)Build\Data\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(ProjectDir)Build\Executable\$(PlatformName)\$(Configuration)\</OutDir>
+    <OutDir>$(ProjectDir)Build\Library\$(PlatformName)\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)Build\Data\$(PlatformName)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

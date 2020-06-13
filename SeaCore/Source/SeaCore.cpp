@@ -7,14 +7,14 @@
 #include <SDL.h>
 #include <thread>
 
-#include "../Resources/ResourceManager.h"
+#include "Resources/ResourceManager.h"
 
-#include "../Input/InputManager.h"
+#include "Input/InputManager.h"
 
-#include "../Scene/Scene.h"
-#include "../Scene/SceneManager.h"
-#include "../Physics/Physics.h"
-#include "../Graphics/Renderer.h"
+#include "Scene/Scene.h"
+#include "Scene/SceneManager.h"
+#include "Physics/Physics.h"
+#include "Graphics/Renderer.h"
 
 using namespace std;
 
@@ -76,11 +76,6 @@ void sea_core::SeaCore::Run()
 				while (lag >= fixedDeltaTime) //-> Catch up 
 				{
 					Physics()->Step(fixedDeltaTime, 6, 2);
-
-					b2Body* body = Physics()->GetBodyList();
-					b2Vec2 position = body->GetPosition();
-					float angle = body->GetAngle();
-					printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 					
 					scene->FixedUpdate();
 					lag -= fixedDeltaTime;
@@ -90,6 +85,9 @@ void sea_core::SeaCore::Run()
 				Time().m_FpsTime.UpdateFps(deltaTime);
 				
 				scene->Update();
+
+				m_Project->Update(); 
+				
 				//Update();
 				//LateUpdate();
 

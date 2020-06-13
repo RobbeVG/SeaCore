@@ -7,7 +7,7 @@
   <PropertyGroup />
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)\SeaCore;$(SolutionDir)\SeaCore\Source;$(SolutionDir)\SeaCore\Source\Base;$(TRD_PARTY)SDL2_ttf\include;$(TRD_PARTY)SDL2_image\include;$(TRD_PARTY)SDL2\include;$(TRD_PARTY)box2d\include;$(TRD_PARTY)glm\glm;&lt;different options&gt;;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\SeaCore\Source;$(TRD_PARTY)SDL2_ttf\include;$(TRD_PARTY)SDL2_image\include;$(TRD_PARTY)SDL2\include;$(TRD_PARTY)box2d\include;$(TRD_PARTY)glm\glm;&lt;different options&gt;;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <SDLCheck>true</SDLCheck>
       <WarningLevel>Level4</WarningLevel>
       <TreatWarningAsError>true</TreatWarningAsError>

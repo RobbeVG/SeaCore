@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Base\SeaCore.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Base\SeaCore_pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Components\Behaviour\BehaviourComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -105,23 +99,17 @@
     <ClCompile Include="Source\Components\Render\SpriteRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\main.cpp">
+    <ClCompile Include="Source\SCProject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Base\SCProject.cpp">
+    <ClCompile Include="Source\SeaCore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DefaultProject.cpp">
+    <ClCompile Include="Source\SeaCore_pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Base\SeaCore.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Base\SeaCore_pch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Components\Behaviour\BehaviourComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -251,10 +239,13 @@
     <ClInclude Include="Source\Components\Render\SpriteRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Base\SCProject.h">
+    <ClInclude Include="Source\SCProject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DefaultProject.h">
+    <ClInclude Include="Source\SeaCore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SeaCore_pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

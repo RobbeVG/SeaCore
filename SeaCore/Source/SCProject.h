@@ -34,6 +34,10 @@ namespace sea_core
 
 	public:
 		virtual void Load() = 0;
+		/**
+		 * @brief Try and only use this for debugging.
+		 */
+		virtual void Update() {}
 		
 	private:
 		ProjectSettings m_ProjectSettings;

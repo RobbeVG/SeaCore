@@ -6,7 +6,7 @@
 #endif
 
 //#include "Base/SeaCore_pch.h"
-#include "Base/SeaCore.h"
+#include "SeaCore.h"
 //#include "BubbleBobble.h"
 
 #include <windows.h>

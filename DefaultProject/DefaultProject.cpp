@@ -11,7 +11,6 @@
 #include "Components/Transform.h"
 #include "Physics/Physics.h"
 
-
 sea_core::DefaultProject::DefaultProject()
 	: SCProject(ProjectSettings{ProjectSettings::WindowSettings(640, 480, "DefaultProject")})
 {
@@ -87,6 +86,14 @@ void sea_core::DefaultProject::Load()
 	pObject->AddComponent(new SpriteRenderer("Resources/Sprites3.png", desc));
 
 	scene.Add(pObject);
+}
+
+void sea_core::DefaultProject::Update()
+{
+	b2Body* body = Physics()->GetBodyList();
+	b2Vec2 position = body->GetPosition();
+	float angle = body->GetAngle();
+	printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 }
 
 sea_core::FpsRenderer::FpsRenderer()

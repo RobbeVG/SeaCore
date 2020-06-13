@@ -14,7 +14,7 @@ namespace sea_core
 
 
 		void Load() override;
-		//void Update() override;
+		void Update() override;
 	};
 
 	class FpsRenderer final : public MonoBehaviour
