@@ -2,13 +2,9 @@
 
 #include <iostream>
 
-
-
 #include "Components/Physics/Colliders/PolygonCollider.h"
 #include "Components/Physics/CommandComponent.h"
 #include "Components/Render/SpriteRenderer.h"
-
-
 
 #include "Graphics/Texture2D.h"
 #include "Helpers/BinaryReader.h"
@@ -65,7 +61,12 @@ void sea_core::BubbleBobble::Update()
 		
 		//m_pCommandComponent->AddCommand(m_pMove);
 	}
-	
+
+	///
+	if (pInputManager.IsAction(Next))
+		SceneManager::GetInstance().ActivateNextScene();
+	if (pInputManager.IsAction(Prev))
+		SceneManager::GetInstance().ActivatePreviousScene();
 
 }
 
@@ -94,21 +95,24 @@ void sea_core::BubbleBobble::LoadLevels() const
 	Texture2D* pTexture = ResourceManager::GetInstance().Textures().Load("LevelBigBlocks.png"); //Texture is 10*10!
 	const float radiusTile = float(pTexture->GetWidth()) / 10.0f;
 
-	float xLocation = float(radiusTile) /2.0f;
-	float yLocation = GetProjectSettings().windowSettings.Height - float(radiusTile) /2.0f;
+
 	
-	const int amountLevels = 1; //100
+	const int amountLevels = 5; //100
 	const int amountRows = 25;
 	const int amountBytesPerRow = 4;
 	
 	
 	for (int nrLevel = 1; nrLevel <= amountLevels; ++nrLevel)
 	{
+		float yLocation = GetProjectSettings().windowSettings.Height - float(radiusTile) / 2.0f;
+		
 		Scene& scene = SceneManager::GetInstance().CreateScene("Level" + std::to_string(nrLevel));
 		//Loading of the level blocks
 		{
 			for (int nrRow = 0; nrRow < amountRows; ++nrRow)
 			{
+				float xLocation = float(radiusTile) / 2.0f;
+
 				for (int bytesPerRow = 0; bytesPerRow < amountBytesPerRow; ++bytesPerRow)
 				{
 					const unsigned char tileRow = reader.Read<char>();
@@ -142,10 +146,11 @@ void sea_core::BubbleBobble::LoadLevels() const
 						xLocation += radiusTile;
 					}
 				}
-				xLocation = float(radiusTile) / 2.0f;
 				yLocation -= radiusTile;
 			}
 		}
+
+		
 
 		//Loading of the level enemies
 		{
@@ -170,7 +175,7 @@ void sea_core::BubbleBobble::LoadEnemies() const
 		return;
 	reader.SetStream(pFile);
 
-	const int amountLevels = 1; //100
+	const int amountLevels = 5; //100
 
 	enum class EnemyType : unsigned char
 	{
@@ -276,7 +281,6 @@ void sea_core::BubbleBobble::LoadEnemies() const
 		}
 	}
 
-
 	pFileManager.UnLoad("SeperatedEnemyData.dat");
 	pFileManager.SetOpenMode();
 }
@@ -305,7 +309,7 @@ void sea_core::BubbleBobble::LoadCharacters()
 
 		m_pCommandComponent = new CommandComponent();
 		pBob->AddComponent(m_pCommandComponent);
-		m_pJump = new JumpCommand(pRigidBody, pCollider, 200.0f);
+		m_pJump = new JumpCommand(pRigidBody, pCollider, 2000.0f);
 		m_pMove = new MoveCommand(pRigidBody, b2Vec2(), 100.0f);
 
 		scene.Add(pBob);
@@ -342,10 +346,19 @@ void sea_core::BubbleBobble::SetupInput()
 	pRight->AddKeyAction(SDLK_d, OutputTriggerState::Down);
 	InputAction* pFire = new InputAction(Fire);
 	pFire->AddMouseAction(SDL_BUTTON_LEFT, OutputTriggerState::Down);
+
+
+	//DEBUG
+	InputAction* pNext = new InputAction(Next);
+	pNext->AddKeyAction(SDLK_F3, OutputTriggerState::Down);
+	InputAction* pPrev = new InputAction(Prev);
+	pPrev->AddKeyAction(SDLK_F4, OutputTriggerState::Down);
 	
 	InputManager::GetInstance().AddAction(pUp);
 	InputManager::GetInstance().AddAction(pDown);
 	InputManager::GetInstance().AddAction(pLeft);
 	InputManager::GetInstance().AddAction(pRight);
 	InputManager::GetInstance().AddAction(pFire);
+	InputManager::GetInstance().AddAction(pNext);
+	InputManager::GetInstance().AddAction(pPrev);
 }

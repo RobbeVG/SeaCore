@@ -28,7 +28,7 @@ namespace sea_core
 		bool ProcessInput();
 		bool IsAction(int id) const;
 
-	private:
+	private:		
 		std::map<int, const InputAction*> m_InputActions;
 
 		std::unordered_map<SDL_Keycode, OutputTriggerState> m_KeyboardKeyStates;

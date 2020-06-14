@@ -34,7 +34,11 @@ namespace sea_core
 			Down,
 			Left,
 			Right,
-			Fire
+			Fire,
+
+			//DEBUG
+			Next,
+			Prev
 		};
 		
 		void LoadLevels() const;

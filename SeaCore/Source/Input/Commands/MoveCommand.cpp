@@ -18,7 +18,9 @@ void sea_core::MoveCommand::Execute()
 {
 	b2Vec2 displacement(m_Speed * m_Displacement.x, m_Speed * m_Displacement.y);
 	displacement *= Time().GetFixedDeltaTime();
-
+	
 	b2Body* pBody = m_pRigidBody->GetBody();
-	pBody->SetTransform(pBody->GetPosition() + displacement, 0.0f);
+
+	pBody->ApplyLinearImpulse(displacement, pBody->GetPosition(), true);
+	//pBody->SetTransform(pBody->GetPosition() + displacement, 0.0f);
 }

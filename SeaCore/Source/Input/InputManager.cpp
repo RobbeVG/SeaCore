@@ -51,6 +51,10 @@ bool sea_core::InputManager::ProcessInput()
 		mouseCodes.insert(mouseState.first);
 	}
 
+	SDL_JoystickEventState(SDL_ENABLE);
+	SDL_Joystick* joystick = SDL_JoystickOpen(0);
+
+	
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT) {
@@ -69,10 +73,16 @@ bool sea_core::InputManager::ProcessInput()
 				else if (m_KeyboardKeyStates[e.key.keysym.sym] != OutputTriggerState::Pressed)
 					m_KeyboardKeyStates[e.key.keysym.sym] = OutputTriggerState::Down;
 			}
+
+			std::cout << " DOWN" << std::endl;
+			
 			keyCodes.erase(e.key.keysym.sym);
 		}
 		else if (e.type == SDL_KEYUP)
 		{
+			std::cout << " UP" << std::endl;
+
+			
 			m_KeyboardKeyStates[e.key.keysym.sym] = OutputTriggerState::Up;
 			keyCodes.erase(e.key.keysym.sym);
 		}
@@ -98,8 +108,34 @@ bool sea_core::InputManager::ProcessInput()
 			m_MouseButtonStates[e.button.button] = OutputTriggerState::Up;
 			mouseCodes.insert(e.button.button);
 		}
+
+		else if (e.type == SDL_JOYAXISMOTION)
+		{
+			if ((e.jaxis.value < -3200) || (e.jaxis.value > 3200))
+			{
+				if (e.jaxis.axis == 0)
+				{
+					/* Left-right movement code goes here */
+				}
+
+				if (e.jaxis.axis == 1)
+				{
+					/* Up-Down movement code goes here */
+				}
+			}
+			break;
+		}
+
+		else if (e.type == SDL_JOYBUTTONDOWN)
+		{
+			
+		}
+
 	}
 
+	SDL_JoystickClose(joystick);
+
+	
 	//Erase the ones not being used 
 	for (SDL_Keycode unUsedKey : keyCodes)
 	{
@@ -122,8 +158,6 @@ bool sea_core::InputManager::IsAction(const int id) const
 	const InputAction* pInputAction = (*it).second;
 	for (const std::pair<SDL_Keycode, OutputTriggerState> keyState : pInputAction->GetKeyStates())
 	{
-		if (m_KeyboardKeyStates.size() > 0)
-			std::cout << "EU_" << std::endl;
 		std::unordered_map<int, OutputTriggerState>::const_iterator keyIt = m_KeyboardKeyStates.find(keyState.first);
 		if (keyIt != m_KeyboardKeyStates.end())
 		{
@@ -142,6 +176,7 @@ bool sea_core::InputManager::IsAction(const int id) const
 	}
 	return false;
 }
+
 
 //
 //bool sea_core::InputManager::IsPressed(ControllerButton button) const

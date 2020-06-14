@@ -22,6 +22,7 @@ void sea_core::JumpCommand::Execute()
 	//if (m_pCollider->GetFixture().RayCast(&output, input, 0))
 	//{
 		b2Body* pBody = m_pRigidBody->GetBody();
-		pBody->ApplyForce(b2Vec2(0.0f, m_Force), pBody->GetPosition(), true);
+		
+		pBody->ApplyLinearImpulse(b2Vec2(0.0f, m_Force), pBody->GetPosition(), true);
 	//}
 }
