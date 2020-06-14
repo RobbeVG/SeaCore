@@ -17,7 +17,7 @@ sea_core::TextureRenderer::TextureRenderer(const Texture2D* pTexture)
 
 void sea_core::TextureRenderer::Render() const
 {	
-	const glm::vec3 location = GetParent()->GetTransform()->GetPosition();
+	const b2Vec2 location = GetParent()->GetTransform()->GetPosition();
 	Renderer::GetInstance().RenderTexture(*m_pTexture, location.x, location.y);
 }
 

@@ -19,7 +19,7 @@ public:
 	BaseLoader& operator=(const BaseLoader& other) = delete;
 	BaseLoader& operator=(BaseLoader&& other) noexcept = delete;
 
-	void SetDataPath(const std::string& rootPath) const { m_DataPath = std::string(rootPath); };
+	void SetDataPath(const std::string& rootPath) { m_DataPath = rootPath; };
 	T* Load(const std::string& file);
 	void UnLoad(const std::string& file);
 

@@ -3,7 +3,7 @@
 
 
 PhysicsWorld::PhysicsWorld()
-	: m_pWorld(new b2World(b2Vec2(0.0f, -9.81f)))
+	: m_pWorld(new b2World(b2Vec2(0.0f, 9.81f)))
 {
 }
 

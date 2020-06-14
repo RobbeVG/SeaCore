@@ -75,7 +75,7 @@ void sea_core::GameObject::FixedUpdate()
 
 void sea_core::GameObject::SetPosition(const float x, const float y) const
 {
-	GetTransform()->SetPosition(x, y, 0.0f);
+	GetTransform()->SetPosition(x, y);
 }
 
 //Use attachToContainer for the correct component to appropriate container 

@@ -45,8 +45,8 @@ void sea_core::SpriteRenderer::Update()
 
 void sea_core::SpriteRenderer::Render() const
 {
-	const glm::vec3 location = GetParent()->GetTransform()->GetPosition();
-	const glm::vec3 scale = GetParent()->GetTransform()->GetScale();
+	const b2Vec2 location = GetParent()->GetTransform()->GetPosition();
+	const b2Vec2 scale = GetParent()->GetTransform()->GetScale();
 
 	const SDL_Rect src({
 		int(m_AnimFrameColumn * m_ClipWidth),
@@ -56,5 +56,12 @@ void sea_core::SpriteRenderer::Render() const
 	});	
 	//(, GetTexture()->GetHeight() + ((m_AnimFrameRow + 1) * m_ClipHeight), m_ClipWidth, m_ClipHeight);
 
-	Renderer::GetInstance().RenderTexture(*GetTexture(), src, location.x, location.y);
+	const SDL_Rect dst({
+	int(location.x),
+	int(location.y),
+	int(scale.x * int(m_ClipWidth)),
+	int(scale.y * int(m_ClipHeight))
+		});
+	
+	Renderer::GetInstance().RenderTexture(*GetTexture(), src, dst);
 }

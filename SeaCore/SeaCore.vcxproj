@@ -19,7 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MessageSystem.cpp" />
+    <ClCompile Include="Source\Components\Physics\Colliders\ChainCollider.cpp" />
+    <ClCompile Include="Source\Components\Physics\Colliders\CircleCollider.cpp" />
+    <ClCompile Include="Source\Components\Physics\Colliders\EdgeCollider.cpp" />
+    <ClCompile Include="Source\Components\Physics\Colliders\PolygonCollider.cpp" />
+    <ClCompile Include="Source\Components\Physics\ColliderComponent.cpp" />
+    <ClCompile Include="Source\Components\Physics\RigidBody.cpp" />
     <ClCompile Include="Source\Messaging\Endpoint.cpp" />
     <ClCompile Include="Source\Messaging\Message\Message.cpp" />
     <ClCompile Include="Source\Messaging\Message\MessageBodyManager.cpp" />
@@ -61,7 +66,12 @@
     <ClCompile Include="Source\Resources\Loaders\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MessageSystem.h" />
+    <ClInclude Include="Source\Components\Physics\Colliders\ChainCollider.h" />
+    <ClInclude Include="Source\Components\Physics\Colliders\CircleCollider.h" />
+    <ClInclude Include="Source\Components\Physics\Colliders\EdgeCollider.h" />
+    <ClInclude Include="Source\Components\Physics\Colliders\PolygonCollider.h" />
+    <ClInclude Include="Source\Components\Physics\ColliderComponent.h" />
+    <ClInclude Include="Source\Components\Physics\RigidBody.h" />
     <ClInclude Include="Source\Messaging\MessageConstructors.h" />
     <ClInclude Include="Source\Messaging\Message\MessageBodyManager.h" />
     <ClInclude Include="Source\Messaging\Message\Event.h" />

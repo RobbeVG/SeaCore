@@ -1,8 +1,6 @@
 #pragma once
-#pragma warning(push)
-#pragma warning (disable:4201)
-#include <vec3.hpp>
-#pragma warning(pop)
+
+#include <Box2D/Common/b2Math.h>
 
 #include "BaseComponent.h"
 
@@ -11,20 +9,21 @@ namespace sea_core
 	class Transform final : public BaseComponent
 	{
 	public:
-		Transform(GameObject* pParent);
+		explicit Transform(GameObject* pParent);
 		~Transform() override;
 		
-		const glm::vec3& GetPosition() const { return m_Position; }
-		const glm::vec3& GetScale() const { return m_Scale; }
-		const glm::vec3& GetRotation() const { return m_Rotation; }
+		const b2Vec2& GetPosition() const { return m_Position; }
+		const b2Vec2& GetScale() const { return m_Scale; }
+		float GetRotation() const { return m_RotationAngle; }
 		
-		void SetPosition(float x, float y, float z);
-		void SetScale(float x, float y, float z);
-		void SetRotation(float x, float y, float z);
+		void SetPosition(float x, float y);
+		void SetScale(float x, float y);
+		void SetRotation(float degrees);
+		//void SetRotation(float radians);
 		
 	private:
-		glm::vec3 m_Position;
-		glm::vec3 m_Rotation;
-		glm::vec3 m_Scale;
+		b2Vec2 m_Position;
+		b2Vec2 m_Scale;
+		float  m_RotationAngle;
 	};
 }

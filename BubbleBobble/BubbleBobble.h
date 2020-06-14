@@ -9,9 +9,11 @@ namespace sea_core
 	public:
 		explicit BubbleBobble();
 
+		void Update() override;
 		void Load() override;
 
 	private:
-		void LoadLevels(); 
+		void LoadLevels() const;
+		static void LoadCharacters();
 	};
 }
