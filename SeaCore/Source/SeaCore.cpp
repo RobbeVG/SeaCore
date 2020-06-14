@@ -114,12 +114,14 @@ void sea_core::SeaCore::Awake()
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
 	}
 
+	const ProjectSettings& settings = m_Project->GetProjectSettings();
+
 	m_Window = SDL_CreateWindow(
-		"Programming 4 assignment",
+		settings.windowSettings.Title.c_str(),
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		640,
-		480,
+		settings.windowSettings.Width,
+		settings.windowSettings.Height,
 		SDL_WINDOW_OPENGL
 	);
 	if (m_Window == nullptr)

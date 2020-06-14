@@ -38,6 +38,8 @@ namespace sea_core
 		 * @brief Try and only use this for debugging.
 		 */
 		virtual void Update() {}
+
+		const ProjectSettings& GetProjectSettings() const { return m_ProjectSettings; }
 		
 	private:
 		ProjectSettings m_ProjectSettings;

@@ -12,7 +12,7 @@
 #include "Scene/Scene.h"
 
 sea_core::BubbleBobble::BubbleBobble()
-	: sea_core::SCProject({sea_core::ProjectSettings::WindowSettings(512, 512, "Bubble Bobble")})
+	: sea_core::SCProject({sea_core::ProjectSettings::WindowSettings(512, 512, "Bubble Bobble - Exam Assingment")})
 {
 }
 
@@ -40,16 +40,17 @@ void sea_core::BubbleBobble::LoadLevels()
 	float yLocation = float(radiusTile) /2.0f;
 	
 	const int amountLevels = 1; //100
-	const int amountRowsPerLevel = 25;
+	const int amountRows = 25;
+	const int amountBytesPerRow = 4;
 	
 	
 	for (int nrLevel = 1; nrLevel <= amountLevels; ++nrLevel)
 	{
 		Scene& scene = SceneManager::GetInstance().CreateScene("Level" + std::to_string(nrLevel));
 
-		for (int nrRow = 0; nrRow < 25; ++nrRow)
+		for (int nrRow = 0; nrRow < amountRows; ++nrRow)
 		{
-			for (int bytesPerRow = 0; bytesPerRow < amountRowsPerLevel; ++bytesPerRow)
+			for (int bytesPerRow = 0; bytesPerRow < amountBytesPerRow; ++bytesPerRow)
 			{
 				const unsigned char tileRow = reader.Read<char>();
 				unsigned char currentTile = 128; // 1000 0000
@@ -70,7 +71,7 @@ void sea_core::BubbleBobble::LoadLevels()
 					xLocation += radiusTile;
 				}
 			}
-			xLocation += float(radiusTile) / 2.0f;
+			xLocation = float(radiusTile) / 2.0f;
 			yLocation += radiusTile;
 		}
 	}
