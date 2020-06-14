@@ -53,7 +53,6 @@ bool sea_core::InputManager::ProcessInput()
 
 	SDL_JoystickEventState(SDL_ENABLE);
 	SDL_Joystick* joystick = SDL_JoystickOpen(0);
-
 	
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
@@ -74,13 +73,13 @@ bool sea_core::InputManager::ProcessInput()
 					m_KeyboardKeyStates[e.key.keysym.sym] = OutputTriggerState::Down;
 			}
 
-			std::cout << " DOWN" << std::endl;
+			//std::cout << " DOWN" << std::endl;
 			
 			keyCodes.erase(e.key.keysym.sym);
 		}
 		else if (e.type == SDL_KEYUP)
 		{
-			std::cout << " UP" << std::endl;
+			//std::cout << " UP" << std::endl;
 
 			
 			m_KeyboardKeyStates[e.key.keysym.sym] = OutputTriggerState::Up;
@@ -109,25 +108,31 @@ bool sea_core::InputManager::ProcessInput()
 			mouseCodes.insert(e.button.button);
 		}
 
-		else if (e.type == SDL_JOYAXISMOTION)
-		{
-			if ((e.jaxis.value < -3200) || (e.jaxis.value > 3200))
-			{
-				if (e.jaxis.axis == 0)
-				{
-					/* Left-right movement code goes here */
-				}
+		//else if (e.type == SDL_JOYAXISMOTION)
+		//{
+		//	if ((e.jaxis.value < -3200) || (e.jaxis.value > 3200))
+		//	{
+		//		if (e.jaxis.axis == 0)
+		//		{
+		//			/* Left-right movement code goes here */
+		//		}
 
-				if (e.jaxis.axis == 1)
-				{
-					/* Up-Down movement code goes here */
-				}
-			}
-			break;
-		}
+		//		if (e.jaxis.axis == 1)
+		//		{
+		//			/* Up-Down movement code goes here */
+		//		}
+		//	}
+		//	break;
+		//}
 
 		else if (e.type == SDL_JOYBUTTONDOWN)
 		{
+			
+		}
+		else if (e.type == SDL_JOYBUTTONUP)
+		{
+
+				std::cout << "<sjsj" << std::endl;
 			
 		}
 

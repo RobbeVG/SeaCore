@@ -31,36 +31,56 @@ sea_core::BubbleBobble::BubbleBobble()
 
 sea_core::BubbleBobble::~BubbleBobble()
 {
-	delete m_pJump;
-	delete m_pMove;
+	delete m_pJumpBob;
+	delete m_pMoveBob;
+	
+	delete m_pJumpBub;
+	delete m_pMoveBub;
 }
 
 void sea_core::BubbleBobble::Update()
 {
 	const InputManager& pInputManager = InputManager::GetInstance();
-	if (pInputManager.IsAction(Up))
-		m_pCommandComponent->AddCommand(m_pJump);
-	if (pInputManager.IsAction(Left))
+	if (pInputManager.IsAction(UpBob))
+		m_pCommandBob->AddCommand(m_pJumpBob);
+	if (pInputManager.IsAction(LeftBob))
 	{
-		m_pMove->SetDisplacement({ -1.0f, 0.0f });
-		m_pCommandComponent->AddCommand(m_pMove);
+		m_pMoveBob->SetDisplacement({ -1.0f, 0.0f });
+		m_pCommandBob->AddCommand(m_pMoveBob);
 	}
-	if (pInputManager.IsAction(Right))
+	if (pInputManager.IsAction(RightBob))
 	{
-		m_pMove->SetDisplacement({ 1.0f, 0.0f });
-		m_pCommandComponent->AddCommand(m_pMove);
+		m_pMoveBob->SetDisplacement({ 1.0f, 0.0f });
+		m_pCommandBob->AddCommand(m_pMoveBob);
 	}
-	if (pInputManager.IsAction(Down))
+	if (pInputManager.IsAction(DownBob))
 	{
-		
-		m_pMove->SetDisplacement({ 0.0f, -1.0f });
-		m_pCommandComponent->AddCommand(m_pMove);
+		m_pMoveBob->SetDisplacement({ 0.0f, -1.0f });
+		m_pCommandBob->AddCommand(m_pMoveBob);
 	}
-	if (pInputManager.IsAction(Fire))
+	if (pInputManager.IsAction(FireBob))
+	{	}
+
+	
+	if (pInputManager.IsAction(UpBub))
+		m_pCommandBub->AddCommand(m_pJumpBub);
+	if (pInputManager.IsAction(LeftBub))
 	{
-		
-		//m_pCommandComponent->AddCommand(m_pMove);
+		m_pMoveBub->SetDisplacement({ -1.0f, 0.0f });
+		m_pCommandBub->AddCommand(m_pMoveBub);
 	}
+	if (pInputManager.IsAction(RightBub))
+	{
+		m_pMoveBub->SetDisplacement({ 1.0f, 0.0f });
+		m_pCommandBub->AddCommand(m_pMoveBub);
+	}
+	if (pInputManager.IsAction(DownBub))
+	{
+		m_pMoveBub->SetDisplacement({ 0.0f, -1.0f });
+		m_pCommandBub->AddCommand(m_pMoveBub);
+	}
+	if (pInputManager.IsAction(FireBub))
+	{	}
 
 	///
 	if (pInputManager.IsAction(Next))
@@ -307,10 +327,10 @@ void sea_core::BubbleBobble::LoadCharacters()
 		ColliderComponent* pCollider = new PolygonCollider(pRigidBody, colliderDesc, 8.0f, 8.0f);
 		pBob->AddComponent(pCollider);
 
-		m_pCommandComponent = new CommandComponent();
-		pBob->AddComponent(m_pCommandComponent);
-		m_pJump = new JumpCommand(pRigidBody, pCollider, 2000.0f);
-		m_pMove = new MoveCommand(pRigidBody, b2Vec2(), 100.0f);
+		m_pCommandBob = new CommandComponent();
+		pBob->AddComponent(m_pCommandBob);
+		m_pJumpBob = new JumpCommand(pRigidBody, pCollider, 2000.0f);
+		m_pMoveBob = new MoveCommand(pRigidBody, b2Vec2(), 100.0f);
 
 		scene.Add(pBob);
 	}
@@ -330,35 +350,60 @@ void sea_core::BubbleBobble::LoadCharacters()
 		ColliderComponent* pCollider = new PolygonCollider(pRigidBody, colliderDesc, 8.0f, 8.0f);
 		pBub->AddComponent(pCollider);
 
+		m_pCommandBub = new CommandComponent();
+		pBub->AddComponent(m_pCommandBub);
+		m_pJumpBub = new JumpCommand(pRigidBody, pCollider, 2000.0f);
+		m_pMoveBub = new MoveCommand(pRigidBody, b2Vec2(), 100.0f);
+
 		scene.Add(pBub);
 	}
 }
 
 void sea_core::BubbleBobble::SetupInput()
 {
-	InputAction* pUp = new InputAction(Up);
-	pUp->AddKeyAction(SDLK_z, OutputTriggerState::Down);
-	InputAction* pDown = new InputAction(Down);
-	pDown->AddKeyAction(SDLK_s, OutputTriggerState::Down);
-	InputAction* pLeft = new InputAction(Left);
-	pLeft->AddKeyAction(SDLK_q, OutputTriggerState::Down);
-	InputAction* pRight = new InputAction(Right);
-	pRight->AddKeyAction(SDLK_d, OutputTriggerState::Down);
-	InputAction* pFire = new InputAction(Fire);
-	pFire->AddMouseAction(SDL_BUTTON_LEFT, OutputTriggerState::Down);
+	InputAction* pUpBob = new InputAction(UpBob);
+	pUpBob->AddKeyAction(SDLK_z, OutputTriggerState::Down);
+	InputAction* pDownBob = new InputAction(DownBob);
+	pDownBob->AddKeyAction(SDLK_s, OutputTriggerState::Down);
+	InputAction* pLeftBob = new InputAction(LeftBob);
+	pLeftBob->AddKeyAction(SDLK_q, OutputTriggerState::Down);
+	InputAction* pRightBob = new InputAction(RightBob);
+	pRightBob->AddKeyAction(SDLK_d, OutputTriggerState::Down);
+	InputAction* pFireBob = new InputAction(FireBob);
+	pFireBob->AddKeyAction(SDLK_SPACE, OutputTriggerState::Down);
+
+	
+	InputAction* pUpBub = new InputAction(UpBub);
+	pUpBub->AddKeyAction(SDLK_UP, OutputTriggerState::Down);
+	InputAction* pDownBub = new InputAction(DownBub);
+	pDownBub->AddKeyAction(SDLK_DOWN, OutputTriggerState::Down);
+	InputAction* pLeftBub = new InputAction(LeftBub);
+	pLeftBub->AddKeyAction(SDLK_LEFT, OutputTriggerState::Down);
+	InputAction* pRightBub = new InputAction(RightBub);
+	pRightBub->AddKeyAction(SDLK_RIGHT, OutputTriggerState::Down);
+	InputAction* pFireBub = new InputAction(FireBub);
+	pFireBub->AddMouseAction(SDL_BUTTON_LEFT, OutputTriggerState::Down);
 
 
+	
 	//DEBUG
 	InputAction* pNext = new InputAction(Next);
 	pNext->AddKeyAction(SDLK_F3, OutputTriggerState::Down);
 	InputAction* pPrev = new InputAction(Prev);
 	pPrev->AddKeyAction(SDLK_F4, OutputTriggerState::Down);
 	
-	InputManager::GetInstance().AddAction(pUp);
-	InputManager::GetInstance().AddAction(pDown);
-	InputManager::GetInstance().AddAction(pLeft);
-	InputManager::GetInstance().AddAction(pRight);
-	InputManager::GetInstance().AddAction(pFire);
+	InputManager::GetInstance().AddAction(pUpBob);
+	InputManager::GetInstance().AddAction(pDownBob);
+	InputManager::GetInstance().AddAction(pLeftBob);
+	InputManager::GetInstance().AddAction(pRightBob);
+	InputManager::GetInstance().AddAction(pFireBob);
+	
+	InputManager::GetInstance().AddAction(pUpBub);
+	InputManager::GetInstance().AddAction(pDownBub);
+	InputManager::GetInstance().AddAction(pLeftBub);
+	InputManager::GetInstance().AddAction(pRightBub);
+	InputManager::GetInstance().AddAction(pFireBub);
+	
 	InputManager::GetInstance().AddAction(pNext);
 	InputManager::GetInstance().AddAction(pPrev);
 }

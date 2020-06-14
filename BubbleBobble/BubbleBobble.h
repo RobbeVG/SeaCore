@@ -1,6 +1,7 @@
 #pragma once
 #include "Helpers/EnumHelpers.h"
 #include "Components/Physics/CommandComponent.h"
+#include "Input/Commands/JumpCommand.h"
 #include "SCProject.h"
 
 namespace sea_core
@@ -30,11 +31,17 @@ namespace sea_core
 	private:
 		enum Input
 		{
-			Up,
-			Down,
-			Left,
-			Right,
-			Fire,
+			UpBob,
+			DownBob,
+			LeftBob,
+			RightBob,
+			FireBob,
+
+			UpBub,
+			DownBub,
+			LeftBub,
+			RightBub,
+			FireBub,
 
 			//DEBUG
 			Next,
@@ -46,8 +53,13 @@ namespace sea_core
 		void LoadCharacters();
 		static void SetupInput();
 
-		Command* m_pJump;
-		MoveCommand* m_pMove;
-		CommandComponent* m_pCommandComponent;
+		JumpCommand* m_pJumpBob;
+		MoveCommand* m_pMoveBob;
+		CommandComponent* m_pCommandBob;
+
+		
+		JumpCommand* m_pJumpBub;
+		MoveCommand* m_pMoveBub;
+		CommandComponent* m_pCommandBub;
 	};
 }
