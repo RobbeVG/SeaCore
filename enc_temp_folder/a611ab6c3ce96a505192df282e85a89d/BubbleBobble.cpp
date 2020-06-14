@@ -171,6 +171,8 @@ void sea_core::BubbleBobble::LoadEnemies() const
 	reader.SetStream(pFile);
 
 	const int amountLevels = 1; //100
+	const int amountBytesPerEnemy = 3;
+
 
 	enum class EnemyType : unsigned char
 	{

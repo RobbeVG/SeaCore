@@ -1,10 +1,21 @@
 #pragma once
-
+#include "Helpers/EnumHelpers.h"
 #include "Components/Physics/CommandComponent.h"
 #include "SCProject.h"
 
 namespace sea_core
 {
+	enum class BubbleBobbleCollisionFlags : uint16
+	{
+		Ground			= 1,
+		Friendly		= 2,
+		Enemy			= 4,
+		Food			= 8,
+		
+	};
+	ENUM_FLAGS(BubbleBobbleCollisionFlags)
+
+	
 	class MoveCommand;
 
 	class BubbleBobble : public SCProject
@@ -27,6 +38,7 @@ namespace sea_core
 		};
 		
 		void LoadLevels() const;
+		void LoadEnemies() const;
 		void LoadCharacters();
 		static void SetupInput();
 

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Helpers\Timer.cpp" />
     <ClCompile Include="Source\Input\Commands\JumpCommand.cpp" />
     <ClCompile Include="Source\Input\Commands\MoveCommand.cpp" />
     <ClCompile Include="Source\Input\InputAction.cpp" />
@@ -70,6 +71,7 @@
     <ClCompile Include="Source\Resources\Loaders\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Helpers\Timer.h" />
     <ClInclude Include="Source\Input\Commands\JumpCommand.h" />
     <ClInclude Include="Source\Input\Commands\MoveCommand.h" />
     <ClInclude Include="Source\Input\InputAction.h" />

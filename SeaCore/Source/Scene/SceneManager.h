@@ -15,6 +15,7 @@ namespace sea_core
 		Scene& CreateScene(const std::string& name);
 		//void AddScene(Scene* pScene);
 		Scene& GetActiveScene();
+		Scene* GetScene(unsigned int id);
 		
 		bool ActivateNextScene();
 		bool ActivatePreviousScene();		
@@ -24,7 +25,6 @@ namespace sea_core
 
 	private:
 		void SetActiveScene(Scene* pScene);
-		Scene* GetScene(unsigned int id);
 		
 		std::map<unsigned int, Scene*> m_Scenes;
 		Scene* m_ActiveScene = nullptr;

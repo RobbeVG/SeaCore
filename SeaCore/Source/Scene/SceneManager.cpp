@@ -17,7 +17,6 @@ sea_core::SceneManager::~SceneManager()
 	}
 }
 
-
 sea_core::Scene& sea_core::SceneManager::CreateScene(const std::string& name)
 {
 	const unsigned int id = m_IdCounter++;

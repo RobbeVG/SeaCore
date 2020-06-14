@@ -147,6 +147,9 @@
     <ClCompile Include="Source\Components\Physics\CommandComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Helpers\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Components\Behaviour\BehaviourComponent.h">
@@ -321,6 +324,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Components\Physics\CommandComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Helpers\Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

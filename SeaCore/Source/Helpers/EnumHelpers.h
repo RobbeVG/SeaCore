@@ -1,4 +1,5 @@
 #pragma once
+#include <type_traits>
 
 // Stolen from UNREAL ENGINE MACRO FOR FLAG ENUMS
 // Slightly modified
@@ -18,7 +19,6 @@
 		inline constexpr Enum  operator^ (Enum  lhs, Enum rhs) { return static_cast<Enum>(static_cast<std::underlying_type<Enum>::type>(lhs) ^ static_cast<std::underlying_type<Enum>::type>(rhs)); } \
 		inline constexpr bool  operator! (Enum  value) { return !static_cast<std::underlying_type<Enum>::type>(value); } \
 		inline constexpr Enum  operator~ (Enum  value) { return static_cast<Enum>(~static_cast<std::underlying_type<Enum>::type>(value)); }
-
 
 
 

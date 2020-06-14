@@ -16,6 +16,9 @@ sea_core::SpriteRenderer::SpriteRenderer(const std::string& fileName, SpriteRend
 	, m_EndColumn(desc.EndColumn)
 	, m_EndRow(desc.EndRow)
 	, m_NrFramesPerSec(desc.NrFramesPerSec)
+	, m_AnimTime(0.0f)
+	, m_AnimFrameColumn(m_StartColumn)
+	, m_AnimFrameRow(m_StartRow)
 	, m_Flip(desc.Flip)
 {
 }
