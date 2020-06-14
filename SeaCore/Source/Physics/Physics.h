@@ -8,6 +8,7 @@ class PhysicsWorld : public sea_core::Singleton<PhysicsWorld>
 public:
 	explicit PhysicsWorld();
 	~PhysicsWorld();
+	
 	b2World* GetWorld() const { return m_pWorld; };
 
 private:

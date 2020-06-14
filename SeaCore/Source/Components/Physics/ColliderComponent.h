@@ -23,6 +23,9 @@ namespace sea_core
 	
 	class ColliderComponent : public PhysicsComponent
 	{
+	public:
+		const b2Fixture& GetFixture() const { return *m_pFixture; }
+		
 	protected:
 		explicit ColliderComponent() : m_pFixture(nullptr) {}
 		inline void FixedUpdate() override {}

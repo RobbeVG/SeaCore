@@ -15,7 +15,11 @@ namespace sea_core
 		const b2Vec2& GetPosition() const { return m_Position; }
 		const b2Vec2& GetScale() const { return m_Scale; }
 		float GetRotation() const { return m_RotationAngle; }
-		
+
+		/**
+		 * When you use these you should check if there is a colliderComponent/RigidBody and also set the position there...
+		 * I refuse to use typeid
+		 */
 		void SetPosition(float x, float y);
 		void SetScale(float x, float y);
 		void SetRotation(float degrees);

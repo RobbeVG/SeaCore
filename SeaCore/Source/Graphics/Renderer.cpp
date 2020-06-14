@@ -2,11 +2,16 @@
 #include "Renderer.h"
 #include <SDL.h>
 
-
+#include "SDL_render.h"
 #include "Scene/SceneManager.h"
 #include "Scene/Scene.h"
 
 #include "Texture2D.h"
+
+sea_core::Renderer::Renderer()
+	: m_Renderer(nullptr)
+{
+}
 
 void sea_core::Renderer::Init(SDL_Window * window)
 {
@@ -67,10 +72,37 @@ void sea_core::Renderer::RenderTexture(const Texture2D& texture, const SDL_Rect&
 	RenderTexture(texture, &src, dst);
 }
 
-void sea_core::Renderer::RenderTexture(const Texture2D& texture, const SDL_Rect* src, SDL_Rect dst) const
+SDL_Rect sea_core::Renderer::ToScreen(const SDL_Rect& dst) const
 {
-	dst.x -= dst.w / 2;
-	dst.y -= dst.h / 2;
+	SDL_Rect rect;
+	rect.x = dst.x;
 	
-	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), src, &dst);
+	int w, h;
+	SDL_GetRendererOutputSize(m_Renderer, &w, &h);
+	rect.y = h - dst.y;
+
+	rect.w = dst.w;
+	rect.h = dst.h;
+	return rect;
+	/*
+	SDL_Rect rect;
+	rect.x = dst.x * m_PixelsPerMeter;
+	
+	int w, h;
+	SDL_GetRendererOutputSize(m_Renderer, &w, &h);
+	rect.y = h - (dst.y * m_PixelsPerMeter);
+
+	rect.w = dst.w;
+	rect.h = dst.h;
+	return rect;
+	*/
+}
+
+void sea_core::Renderer::RenderTexture(const Texture2D& texture, const SDL_Rect* src, const SDL_Rect& dst) const
+{
+	SDL_Rect screenDst = ToScreen(dst);
+	screenDst.x -= screenDst.w / 2;
+	screenDst.y -= screenDst.h / 2;
+	
+	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), src, &screenDst);
 }

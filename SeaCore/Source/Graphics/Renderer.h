@@ -15,6 +15,7 @@ namespace sea_core
 	class Renderer final : public Singleton<Renderer>
 	{
 	public:
+		Renderer();
 		void Init(SDL_Window* window);
 
 		void Clear() const;
@@ -31,8 +32,10 @@ namespace sea_core
 
 		SDL_Renderer* GetSDLRenderer() const { return m_Renderer; }
 	private:
-		void RenderTexture(const Texture2D& texture, const SDL_Rect* src, SDL_Rect dst) const;
-		SDL_Renderer* m_Renderer{};
+		SDL_Rect ToScreen(const SDL_Rect& dst) const;
+		void RenderTexture(const Texture2D& texture, const SDL_Rect* src, const SDL_Rect& dst) const;
+
+		SDL_Renderer* m_Renderer;
 	};
 }
 

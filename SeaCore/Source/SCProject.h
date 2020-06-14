@@ -22,6 +22,22 @@ namespace sea_core
 			unsigned int Height;
 			std::string Title;
 		} windowSettings;
+
+		struct GameSettings
+		{
+			GameSettings()
+				: Gravity(-9.81f)
+				, FixedDeltaTime(0.2f)
+			{}
+			GameSettings(const float gravity, float fixedDt)
+				: Gravity(gravity)
+				, FixedDeltaTime(fixedDt)
+			{}
+			
+			
+			float Gravity;
+			float FixedDeltaTime;
+		} gameSettings;
 	};
 
 	class SCProject

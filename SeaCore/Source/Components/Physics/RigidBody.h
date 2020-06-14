@@ -6,7 +6,11 @@ namespace sea_core
 {
 	//Needs a transform component!
     struct RigidBodyDesc;
-	
+
+	/**
+	 * @note Adding a rigidbody disables the setter functions on the Transform Component.
+	 * -> Still want to move? Use a movementComponent or a Monobehaviour
+	 */
     class RigidBody : public PhysicsComponent
     {
     public:

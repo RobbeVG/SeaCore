@@ -109,6 +109,7 @@ void sea_core::SeaCore::Run()
 
 void sea_core::SeaCore::Awake()
 {
+	//Window Settings
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
@@ -130,6 +131,11 @@ void sea_core::SeaCore::Awake()
 	}
 
 	Renderer::GetInstance().Init(m_Window);
+
+
+	//Game Settins
+	Physics()->SetGravity({ 0.0f, settings.gameSettings.Gravity });
+	Time().m_DeltaTime.fixedDeltaTime = settings.gameSettings.FixedDeltaTime;
 }
 
 void sea_core::SeaCore::Destroy()

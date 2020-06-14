@@ -22,7 +22,7 @@ namespace sea_core
 				, timeScale(1.0f)
 			{}
 
-			void SetDeltaTime(const float deltaT) { deltaTime = deltaT; };
+			void SetDeltaTime(const float deltaT) { deltaTime = deltaT; }
 			void SetTimeScale(const float timeS) { timeScale = timeS; }
 
 			float deltaTime;

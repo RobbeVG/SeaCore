@@ -39,5 +39,6 @@ sea_core::RigidBody::RigidBody(Transform* pTransform, const RigidBodyDesc& desc)
 	bodyDef.gravityScale = desc.gravityScale;
 	
 	m_pBody = Physics()->CreateBody(&bodyDef);
-	//m_pBody->GetTransform().p = 
+	m_pBody->SetTransform(pTransform->GetPosition(), 0.0f);
+	//m_pBody->GetTransform().p. = ;
 }
