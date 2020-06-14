@@ -11,8 +11,13 @@
 
 namespace sea_core
 {
-	class Channel : public Sender /*, public Receiver*///Not really a receiver more used to send messages (StartingPoint)
-	{};
+	//class Channel : public Sender
+	//{
+
+	//};
+
+	typedef Sender Channel;
+
 	
 	//{
 	//protected:

@@ -34,7 +34,9 @@ void sea_core::DefaultProject::Load()
 	object->SetPosition(320, 240);
 	scene.Add(object);
 
-	const auto font = ResourceManager::GetInstance().LoadFont("Resources/Lingua.otf", 36);
+	FontManager& pFontManager = ResourceManager::GetInstance().Fonts();
+	pFontManager.SetFontSize(36);
+	const auto font = ResourceManager::GetInstance().Fonts().Load("Resources/Lingua.otf");
 
 	GameObject* textObject = new GameObject();
 	textObject->AddComponent(new TextRenderer("Programming 4 Assignment", font));
@@ -91,14 +93,16 @@ void sea_core::DefaultProject::Load()
 void sea_core::DefaultProject::Update()
 {
 	b2Body* body = Physics()->GetBodyList();
-	b2Vec2 position = body->GetPosition();
-	float angle = body->GetAngle();
+	const b2Vec2 position = body->GetPosition();
+	const float angle = body->GetAngle();
 	printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 }
 
 sea_core::FpsRenderer::FpsRenderer()
 {
-	const auto font = ResourceManager::GetInstance().LoadFont("Resources/Lingua.otf", 36);
+	FontManager& pFontManager = ResourceManager::GetInstance().Fonts();
+	pFontManager.SetFontSize(36);
+	const auto font = pFontManager.Load("Resources/Lingua.otf");
 
 	m_FpsText = new TextRenderer("60", font);
 }

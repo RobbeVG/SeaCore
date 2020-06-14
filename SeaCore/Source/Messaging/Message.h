@@ -1,61 +1,42 @@
 #pragma once
-#include <deque>
-
+#include "MessageConstructors.h"
 
 namespace sea_core
 {
-	class Channel;
-	class Sender;
-	class Receiver;
+	class MessageBodyManager;
 
-	enum class MessageType : uint8_t
-	{
-		Command,
-		Event,
-		Document
-	};
-
-	struct MessageHeader
-	{
-		MessageHeader(const MessageType type, const Sender* pOrigin, Receiver* pDestination, const size_t size, const size_t alignment)
-			: pOrigin(pOrigin)
-			, pDestination(pDestination)
-			, size(size)
-			, alignment(alignment)
-			, type(type)
-		{}
-
-		//const Sender* pOriginalOrigin;
-		const Sender* pOrigin;
-		std::deque<Channel*> pPassingChannels;
-		Receiver* pDestination;
-
-		//TODO Timestamp
-		
-		size_t size;
-		size_t alignment;
-		MessageType type;
-	};
-
-	
 	class Message
 	{
-	protected:
-		explicit Message(const MessageType type, const Sender* pSender, Receiver* pDestination, const size_t size, const size_t alignment)
-			: m_Header(type, pSender, pDestination, size, alignment)
-		{}
-		
 	public:
-		virtual ~Message() = default;
+		explicit Message(Sender* pSender, Receiver* pDestination)
+			: m_Header(pSender, pDestination)
+			, m_Body(nullptr)
+		{
+		}
+		~Message();
 
-		const MessageHeader& GetHeader() const { return m_Header; }
-		void SetReceiver(Receiver* pReceiver) { m_Header.pDestination = pReceiver; };
+		Message(const Message& other);
+		Message(Message&& other) noexcept;
+		Message& operator=(const Message& other);
+		Message& operator=(Message&& other) noexcept;
 
+		void CreateEventMessage(const EventData& eventData);
+		//void CreateDocumentMessage();
+		//void CreateCommandMessage();
 		
-		virtual const void* GetData() const = 0;
-		virtual bool IsValid() const { return GetData() != nullptr;}
+	private:
+		friend class MessageBodyManager;
 		
-	protected:
 		MessageHeader m_Header;
+		MessageBody* m_Body;
+
+	public:
+		MessageHeader& GetHeader() { return m_Header; }
+		bool HasBody() const { return m_Body; }
+		/**
+		 * @brief GetThe body of the message!
+		 * @note Use Has body to check if the body exist!
+		 */
+		MessageBody* GetBody() const { return m_Body; }
 	};
 }

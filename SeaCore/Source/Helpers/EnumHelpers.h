@@ -20,6 +20,10 @@
 		inline constexpr Enum  operator~ (Enum  value) { return static_cast<Enum>(~static_cast<std::underlying_type<Enum>::type>(value)); }
 
 
-#define ENUM_CONVERT(Enum) \
-	inline std::underlying_type<Enum>::type Convert(Enum value) { return static_cast<std::underlying_type<Enum>::type>(value); } \
-	inline Enum Convert(std::underlying_type<Enum>::type value) { return Enum(value); }
+
+
+template< typename Enum >
+constexpr typename std::underlying_type<Enum>::type ConvertEnum(Enum value) noexcept { return static_cast<typename std::underlying_type<Enum>::type>(value); };
+
+template< typename Enum >
+constexpr Enum ConvertEnum(typename std::underlying_type<Enum>::type value) noexcept { return Enum(value); }

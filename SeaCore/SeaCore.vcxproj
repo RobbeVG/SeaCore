@@ -19,13 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MessageSystem.cpp" />
+    <ClCompile Include="Source\Messaging\Endpoint.cpp" />
+    <ClCompile Include="Source\Messaging\Message\Message.cpp" />
+    <ClCompile Include="Source\Messaging\Message\MessageBodyManager.cpp" />
+    <ClCompile Include="Source\Resources\Loaders\FontManager.cpp" />
+    <ClCompile Include="Source\Resources\Loaders\FileManager.cpp" />
+    <ClCompile Include="Source\Resources\Loaders\BaseLoader.cpp" />
+    <ClCompile Include="Source\Helpers\BinaryReader.cpp" />
     <ClCompile Include="Source\Physics\Physics.cpp" />
-    <ClCompile Include="Source\Messaging\MessagingSystemsManager.cpp" />
     <ClCompile Include="Source\Messaging\Channels\Bus.cpp" />
-    <ClCompile Include="Source\Messaging\Channels\DataType.cpp" />
-    <ClCompile Include="Source\Messaging\Channels\PointToPoint.cpp" />
-    <ClCompile Include="Source\Messaging\Channels\PublishSubscribe.cpp" />
-    <ClCompile Include="Source\Messaging\Endpoints\Endpoint.cpp" />
     <ClCompile Include="Source\Messaging\Filters\Routers\Router.cpp" />
     <ClCompile Include="Source\Allocators\DoubleLinkedAllocator.cpp" />
     <ClCompile Include="Source\Components\ComponentManager.cpp" />
@@ -55,19 +58,21 @@
     <ClCompile Include="Source\Scene\SceneManager.cpp" />
     <ClCompile Include="Source\Messaging\Filters\Translators\Translator.cpp" />
     <ClCompile Include="Source\Components\Render\SpriteRenderer.cpp" />
+    <ClCompile Include="Source\Resources\Loaders\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MessageSystem.h" />
+    <ClInclude Include="Source\Messaging\MessageConstructors.h" />
+    <ClInclude Include="Source\Messaging\Message\MessageBodyManager.h" />
+    <ClInclude Include="Source\Messaging\Message\Event.h" />
+    <ClInclude Include="Source\Resources\Loaders\FontManager.h" />
+    <ClInclude Include="Source\Resources\Loaders\FileManager.h" />
+    <ClInclude Include="Source\Resources\Loaders\BaseLoader.h" />
+    <ClInclude Include="Source\Helpers\BinaryReader.h" />
     <ClInclude Include="Source\Physics\Physics.h" />
-    <ClInclude Include="Source\Messaging\MessagingSystemsManager.h" />
     <ClInclude Include="Source\Messaging\Channels\Bus.h" />
     <ClInclude Include="Source\Messaging\Filter.h" />
-    <ClInclude Include="Source\Messaging\Message\Command.h" />
-    <ClInclude Include="Source\Messaging\Message\Document.h" />
-    <ClInclude Include="Source\Messaging\Message\Event.h" />
     <ClInclude Include="Source\Helpers\StrongTemplates.h" />
-    <ClInclude Include="Source\Messaging\Channels\DataType.h" />
-    <ClInclude Include="Source\Messaging\Channels\PointToPoint.h" />
-    <ClInclude Include="Source\Messaging\Channels\PublishSubscribe.h" />
     <ClInclude Include="Source\Messaging\Channel.h" />
     <ClInclude Include="Source\Messaging\Endpoint.h" />
     <ClInclude Include="Source\Messaging\Message.h" />
@@ -103,6 +108,7 @@
     <ClInclude Include="Source\Time\Time.h" />
     <ClInclude Include="Source\Messaging\Filters\Translator.h" />
     <ClInclude Include="Source\Components\Render\SpriteRenderer.h" />
+    <ClInclude Include="Source\Resources\Loaders\TextureManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -10,5 +10,8 @@ namespace sea_core
 		explicit BubbleBobble();
 
 		void Load() override;
+
+	private:
+		void LoadLevels(); 
 	};
 }

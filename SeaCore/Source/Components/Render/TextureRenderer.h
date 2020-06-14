@@ -8,7 +8,7 @@ namespace sea_core
 	{
 	public:
 		explicit TextureRenderer(const std::string& fileName);
-		~TextureRenderer() override;
+		virtual ~TextureRenderer() = default; // Texture Manager is the manager of textures
 
 		void SetTexture(const std::string& filename);
 

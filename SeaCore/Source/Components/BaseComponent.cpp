@@ -1,7 +1,13 @@
 #include "SeaCore_pch.h"
 #include "BaseComponent.h"
-//#include "Messaging/Broadcaster.h"
 
+#include "Messaging/Endpoint.h"
+
+
+sea_core::BaseComponent::~BaseComponent()
+{
+	delete m_Endpoint; 
+}
 
 void sea_core::BaseComponent::SetParent(GameObject* pParent)
 {

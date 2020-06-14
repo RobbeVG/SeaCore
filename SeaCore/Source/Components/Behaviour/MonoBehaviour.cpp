@@ -37,26 +37,34 @@ void sea_core::MonoBehaviour::HandleMessages()
 	while (!messages.empty())
 	{
 		Message* pMessage = messages.front();
-	switch (Messages::Convert(static_cast<MessagingMessages::Event*>(pMessage)->GetEventIndex())) {
-		case Messages::MonoBehaviour::OnEnable:
-			OnEnable();
-			break;
-		case Messages::MonoBehaviour::OnDisable:
-			OnDisable();
-			break;
-		case Messages::MonoBehaviour::OnStart:
-			OnStart();
-			break;
-		case Messages::MonoBehaviour::OnCollisionEnter:
-			OnCollisionEnter();
-			break;
-		case Messages::MonoBehaviour::OnCollisionExit:
-			OnCollisionExit();
-			break;
-		default:
-			break;
+		if (pMessage->HasBody())
+		{
+			EventData* pEventData = pMessage->GetBody()->GetEventData();
+			if (pEventData && (ConvertEnum<EventMessages::Types>(pEventData->type) == EventMessages::Types::MonoBehaviour))
+			{
+				switch (ConvertEnum<EventMessages::MonoBehaviour>(pEventData->state)) {
+				case EventMessages::MonoBehaviour::OnEnable:
+					OnEnable();
+					break;
+				case EventMessages::MonoBehaviour::OnDisable:
+					OnDisable();
+					break;
+				case EventMessages::MonoBehaviour::OnStart:
+					OnStart();
+					break;
+				case EventMessages::MonoBehaviour::OnCollisionEnter:
+					OnCollisionEnter();
+					break;
+				case EventMessages::MonoBehaviour::OnCollisionExit:
+					OnCollisionExit();
+					break;
+				default:
+					break;
+				}
+			}
 		}
 
+		delete pMessage;
 		messages.pop();
 	}
 }

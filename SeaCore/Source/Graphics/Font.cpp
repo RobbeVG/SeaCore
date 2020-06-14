@@ -15,7 +15,3 @@ sea_core::Font::Font(const std::string& fullPath, unsigned int size) : m_Font(nu
 	}
 }
 
-sea_core::Font::~Font()
-{
-	TTF_CloseFont(m_Font);
-}

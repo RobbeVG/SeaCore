@@ -9,7 +9,7 @@ namespace sea_core
 		{
 		public:
 			template<typename T>
-			Document(const Sender* const pSender, const Reader* const pDestination, const T& object)
+			Document(const Sender* const pSender, Receiver* pDestination, const T& object)
 				: Message(MessageType::Document, pSender, pDestination, sizeof(T), sizeof(T))
 				, m_Data(new unsigned char[m_Header.size])
 			{

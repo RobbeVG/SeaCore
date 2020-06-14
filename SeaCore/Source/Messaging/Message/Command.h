@@ -18,7 +18,7 @@ namespace sea_core
 		{
 			//static_assert(std::is_function_v<decltype(Function)>, "Command message needs a function as a parameter");
 		public:
-			Command(const Sender* const pSender, const Reader* const pDestination, void (*pFunction)())
+			Command(const Sender* const pSender, Receiver* pDestination, void (*pFunction)())
 				: Message(MessageType::Command, pSender, pDestination, sizeof(void (*)()), alignof(void (*)())),
 				  m_pFunction(pFunction)
 			{}

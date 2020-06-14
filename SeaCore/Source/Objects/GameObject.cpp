@@ -3,7 +3,7 @@
 
 #include "Components/Transform.h"
 #include "Messages.h"
-#include "Messaging/Message/Event.h"
+#include "Messaging/Message.h"
 #include "Time/Time.h"
 
 sea_core::GameObject::GameObject()
@@ -43,7 +43,13 @@ void sea_core::GameObject::LateUpdate()
 
 void sea_core::GameObject::Start()
 {
-	m_pMonoBehaviourChannel->SendMessage(new MessagingMessages::Event(m_pMonoBehaviourChannel, nullptr, Messages::Convert(Messages::MonoBehaviour::OnStart)));
+	Message* pMessage = new Message(nullptr, nullptr);
+	using namespace EventMessages;
+	pMessage->CreateEventMessage(EventData{ ConvertEnum(Types::MonoBehaviour), ConvertEnum(MonoBehaviour::OnStart) });
+
+	m_pMonoBehaviourChannel->SendMessage(pMessage);
+	
+	//m_pMonoBehaviourChannel->SendMessage(new MessagingMessages::Event(m_pMonoBehaviourChannel, nullptr, Messages::Convert(Messages::MonoBehaviour::OnStart)));
 	
 	//for (BaseComponent* component : m_Components)
 	//{

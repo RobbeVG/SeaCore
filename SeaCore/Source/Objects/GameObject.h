@@ -44,9 +44,9 @@ namespace sea_core
 	private:
 		Transform* m_pTransform;
 		std::unordered_set<BaseComponent*> m_Components;
-
-		//MessagingChannel::Bus* m_pComponentChannel;
+		
 		MessagingChannel::Bus* m_pMonoBehaviourChannel;
+		//MessagingChannel::Bus* m_pComponentChannel;
 	};
 
 	//template <typename T>

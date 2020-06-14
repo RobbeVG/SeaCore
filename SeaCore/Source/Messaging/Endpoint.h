@@ -8,6 +8,7 @@ namespace sea_core
 	{
 	public:
 		explicit Endpoint() = default;
+		~Endpoint();
 		void ReceiveMessage(Message* pMessage) override { m_pMessages.push(pMessage); };
 		std::queue<Message*>& GetMessages() { return m_pMessages; };
 

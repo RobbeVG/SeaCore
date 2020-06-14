@@ -19,7 +19,7 @@ sea_core::TextRenderer::TextRenderer(const std::string& text, const Font* font)
 
 sea_core::TextRenderer::~TextRenderer()
 {
-	delete m_pFont;
+	delete GetTexture(); //Text components are changing all the time no need for adding it to the TextureManager
 }
 
 void sea_core::TextRenderer::SetText(const std::string& text)
@@ -28,7 +28,10 @@ void sea_core::TextRenderer::SetText(const std::string& text)
 		return;
 	
 	m_Text = text;
-	SetTexture(CreateTextTexture());
+	Texture2D* pNewTexture = CreateTextTexture();
+	
+	delete GetTexture();
+	SetTexture(pNewTexture);
 }
 
 sea_core::Texture2D* sea_core::TextRenderer::CreateTextTexture() const
@@ -45,6 +48,6 @@ sea_core::Texture2D* sea_core::TextRenderer::CreateTextTexture() const
 		throw std::runtime_error(std::string("Create text texture from surface failed: ") + SDL_GetError());
 	}
 	SDL_FreeSurface(surf);
-	
+
 	return new Texture2D(texture);
 }

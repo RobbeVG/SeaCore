@@ -1,5 +1,6 @@
 #pragma once
-#include "PublishSubscribe.h"
+#include <unordered_set>
+#include "Messaging/Channel.h"
 
 namespace sea_core
 {

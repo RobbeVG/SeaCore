@@ -27,6 +27,8 @@ namespace sea_core
 	private:
 		SDL_Texture* m_pTexture;
 
+		size_t m_TextureId;
+		
 		int m_Width;
 		int m_Height;
 	};

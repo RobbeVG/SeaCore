@@ -1,9 +1,10 @@
 #pragma once
 #undef SendMessage
-#include "Message.h"
 
 namespace sea_core
 {
+	class Message;
+	
 	class Receiver
 	{
 	public:

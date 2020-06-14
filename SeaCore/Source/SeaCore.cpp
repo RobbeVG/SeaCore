@@ -28,9 +28,8 @@ void sea_core::SeaCore::Run()
 {
 	Awake();
 
-	// tell the resource manager where he can find the game data
-	ResourceManager::GetInstance().Init("Data/");
-
+	ResourceManager::GetInstance(); //Creating instance all other managers will be initialized
+	
 	//StartUpTime::m_TimeAtStartUp = 0.0f;
 
 	//Physics()->Step()

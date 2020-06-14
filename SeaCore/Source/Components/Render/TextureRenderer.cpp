@@ -21,20 +21,14 @@ void sea_core::TextureRenderer::Render() const
 	Renderer::GetInstance().RenderTexture(*m_pTexture, location.x, location.y);
 }
 
-sea_core::TextureRenderer::~TextureRenderer()
-{
-	delete m_pTexture;
-}
-
 void sea_core::TextureRenderer::SetTexture(const std::string& filename)
 {
 	//if (m_pTexture)
-	SetTexture(ResourceManager::GetInstance().LoadTexture(filename));
+	SetTexture(ResourceManager::GetInstance().Textures().Load(filename));
 }
 
 void sea_core::TextureRenderer::SetTexture(const Texture2D* pTexture)
 {
-	delete m_pTexture;
 	m_pTexture = pTexture;
 }
 

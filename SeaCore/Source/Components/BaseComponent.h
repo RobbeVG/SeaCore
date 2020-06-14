@@ -9,7 +9,7 @@ namespace sea_core
 	class BaseComponent
 	{
 	public:
-		virtual ~BaseComponent() = default;
+		virtual ~BaseComponent();
 		
 		GameObject* GetParent() const { return m_pParent; }
 	protected:

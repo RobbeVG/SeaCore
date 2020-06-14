@@ -66,18 +66,6 @@
     <ClCompile Include="Source\Allocators\DoubleLinkedAllocator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Messaging\Endpoints\Endpoint.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Messaging\Channels\DataType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Messaging\Channels\PointToPoint.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Messaging\Channels\PublishSubscribe.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Messaging\Filters\Routers\Router.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -85,9 +73,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Messaging\Channels\Bus.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Messaging\MessagingSystemsManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Physics\Physics.cpp">
@@ -106,6 +91,33 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\SeaCore_pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Helpers\BinaryReader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Resources\Loaders\BaseLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Resources\Loaders\TextureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Resources\Loaders\FileManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Resources\Loaders\FontManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Messaging\Message\MessageBodyManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Messaging\Message\Message.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Messaging\Endpoint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -176,12 +188,6 @@
     <ClInclude Include="Source\Messages.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Messaging\Channels\DataType.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Messaging\Channels\PointToPoint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Messaging\Channel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -191,9 +197,6 @@
     <ClInclude Include="Source\Messaging\Message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Messaging\Channels\PublishSubscribe.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Helpers\StrongTemplates.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -201,15 +204,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Objects\GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Messaging\Message\Command.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Messaging\Message\Document.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Messaging\Message\Event.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Messaging\Filter.h">
@@ -222,9 +216,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Messaging\Channels\Bus.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Messaging\MessagingSystemsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Messaging\Pipe.h">
@@ -246,6 +237,33 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\SeaCore_pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Helpers\BinaryReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Resources\Loaders\BaseLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Resources\Loaders\TextureManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Resources\Loaders\FileManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Resources\Loaders\FontManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Messaging\Message\Event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Messaging\MessageConstructors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Messaging\Message\MessageBodyManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

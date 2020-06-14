@@ -3,9 +3,14 @@
 
 namespace sea_core
 {
-	namespace Messages
+	namespace EventMessages
 	{
-		enum class MonoBehaviour : unsigned int
+		enum class Types : unsigned short int
+		{
+			MonoBehaviour
+		};
+		
+		enum class MonoBehaviour : unsigned short int
 		{
 			OnStart,
 			OnGui,
@@ -13,9 +18,6 @@ namespace sea_core
 			OnEnable,
 			OnCollisionEnter,
 			OnCollisionExit
-		};
-
-		ENUM_CONVERT(MonoBehaviour)
-		
+		};		
 	}
 }
